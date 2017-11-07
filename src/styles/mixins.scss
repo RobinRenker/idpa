@@ -1,0 +1,77 @@
+@mixin animation($duration,$delay) {
+  animation-delay: $delay;
+  -webkit-animation-delay: $delay;
+  animation-duration: $duration;
+  -webkit-animation-duration: $duration;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+}
+@mixin animation_iteration($iteration){
+  -webkit-animation-iteration-count: $iteration;
+  animation-iteration-count: $iteration;
+}
+@mixin animation_direction($direction){
+  -webkit-animation-direction: $direction;
+  animation-direction: $direction
+}
+
+@function stroke($stroke, $color) {
+  $shadow: ();
+  $from: $stroke*-1;
+  @for $i from $from through $stroke {
+    @for $j from $from through $stroke {
+      $shadow: append($shadow, $i*1px $j*1px 0 $color, comma);
+    }
+  }
+  @return $shadow;
+}
+@mixin stroke($stroke, $color) {
+  text-shadow: stroke($stroke, $color);
+}
+@mixin triangle($left,$leftc,$right,$rightc,$top,$topc,$bottom,$bottomc){
+  width: 0;
+  height: 0;
+  border-bottom: $bottom solid $bottomc;
+  border-top: $top solid $topc;
+  border-left: $left solid $leftc;
+  border-right: $right solid $rightc;
+}
+@mixin transition($what,$duration,$delay,$ease){
+  transition: $what $duration ease-in-out $delay;
+  -webkit-transition-delay: $what $duration ease-in-out $delay;
+}
+@mixin transform($what){
+  -webkit-transform: $what;
+  -moz-transform: $what;
+  -ms-transform: $what;
+  -o-transform: $what;
+  transform: $what;
+}
+@mixin rotate($deg){
+  -ms-transform: rotate($deg);
+  -webkit-transform: rotate($deg);
+  transform: rotate($deg);
+}
+@mixin rotateX($deg){
+  -ms-transform: rotateX($deg);
+  -webkit-transform: rotateX($deg);
+  transform: rotateX($deg);
+}
+@mixin rotateY($deg){
+  -ms-transform: rotateY($deg);
+  -webkit-transform: rotateY($deg);
+  transform: rotateY($deg);
+}
+@mixin scale($w,$h){
+  -ms-transform: scale($w,$h);
+  -webkit-transform: scale($w,$h);
+  transform: scale($w,$h);
+}
+@mixin user_select($val){
+  -webkit-touch-callout: $val;
+  -webkit-user-select: $val;
+  -khtml-user-select: $val;
+  -moz-user-select: $val;
+  -ms-user-select: $val;
+  user-select: $val;
+}

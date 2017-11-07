@@ -1,0 +1,34 @@
+{
+  "ME":{
+    "TITLE":"That's me",
+    "INFO":{
+      "DESC":"Just kidding!<br> You are not gonna find any personal information here or somewhere else!",
+      "STATS":"Age: young<br>Height: normal<br>Eye color: can't see own eyes<br>Fluent: lorem &amp; ipsum",
+      "THREAT":"You are looking for contact information? I sincerely wish you the best of luck!"
+    },
+    "HEADER":{
+      "TITLE_1":"me being",
+      "TITLE_2":"you know ...",
+      "TITLE_3":"just the ",
+      "TITLE_4":"who does ...",
+      "TITLE_5":"dude stuff",
+
+      "DESC_1":"that dude",
+      "DESC_2":"the dude",
+      "DESC_3":"typical dude",
+      "DESC_4":"you know ...",
+      "DESC_5":"you know ..."
+    },
+    "OVERLAY":{
+      "TITLE_1":"Me the dude",
+      "TITLE_2":"FPV"
+    }
+  },
+  "ART":{
+    "TITLE": "Vintage",
+    "COMPASS_SPEECH": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam",
+    "ATOMIC":{
+      "TITLE":"Vintage"
+    }
+  }
+}

@@ -1,0 +1,6 @@
+@import "./mixins";
+@keyframes pulse {
+  0% {@include scale(1,1);}
+  50% {@include scale(1.2,1.2);}
+  100% {@include scale(1,1);}
+}
