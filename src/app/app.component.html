@@ -1,7 +1,9 @@
-<navigation></navigation>
+<navbar></navbar>
 <div class="app-content">
     <router-outlet></router-outlet>
 </div>
+
+
 <h1>Test content</h1>
 <ul>
     <li class="text" *ngFor="let item of items | async">
@@ -9,5 +11,3 @@
     </li>
 </ul>
 
-<button (click)="login()">login</button>
-<button (click)="logout()">logout</button>

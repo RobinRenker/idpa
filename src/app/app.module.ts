@@ -10,13 +10,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { TextService } from './providers/text.service';
 
 import { AppComponent } from './app.component';
-import { NavigationComponent } from './components/navigation/navigation.component';
 import { HomeComponent } from './components/home/home.component';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { environment } from '../environments/environment';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AuthGuardService } from './auth/auth-guard.service';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { StartComponent } from './components/start/start.component';
+import { AuthService } from './auth/auth.service';
 
 @NgModule({
     bootstrap: [
@@ -24,8 +26,9 @@ import { AuthGuardService } from './auth/auth-guard.service';
     ],
     declarations: [
         AppComponent,
-        NavigationComponent,
-        HomeComponent
+        NavbarComponent,
+        HomeComponent,
+        StartComponent
     ],
     imports: [
         BrowserModule,
@@ -38,7 +41,8 @@ import { AuthGuardService } from './auth/auth-guard.service';
     ],
     providers: [
         TextService,
-        AuthGuardService
+        AuthGuardService,
+        AuthService
     ],
     schemas: [
         NO_ERRORS_SCHEMA

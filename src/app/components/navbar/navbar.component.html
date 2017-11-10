@@ -1,0 +1,4 @@
+<button (click)="auth.login()" *ngIf="!(auth.user | async); else showLogout">login</button>
+<ng-template #showLogout>
+    <button (click)="auth.logout()">logout</button>
+</ng-template>
