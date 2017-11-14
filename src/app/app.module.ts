@@ -2,23 +2,25 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AppRoutingModule } from './app-routing.module';
 
 import '../styles/styles.scss';
 
-import { AppRoutingModule } from './app-routing.module';
+import { environment } from '../environments/environment';
 
 import { TextService } from './providers/text.service';
+import { AuthService } from './auth/auth.service';
+import { AuthGuardService } from './auth/auth-guard.service';
+import { NavService } from './providers/nav.service';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
-import { AngularFireModule } from 'angularfire2';
-import { AngularFirestoreModule } from 'angularfire2/firestore';
-import { environment } from '../environments/environment';
-import { AngularFireAuthModule } from 'angularfire2/auth';
-import { AuthGuardService } from './auth/auth-guard.service';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { StartComponent } from './components/start/start.component';
-import { AuthService } from './auth/auth.service';
+import { SidenavComponent } from "./components/sidenav/sidenav.component";
 
 @NgModule({
     bootstrap: [
@@ -28,7 +30,8 @@ import { AuthService } from './auth/auth.service';
         AppComponent,
         NavbarComponent,
         HomeComponent,
-        StartComponent
+        StartComponent,
+        SidenavComponent
     ],
     imports: [
         BrowserModule,
@@ -42,7 +45,8 @@ import { AuthService } from './auth/auth.service';
     providers: [
         TextService,
         AuthGuardService,
-        AuthService
+        AuthService,
+        NavService
     ],
     schemas: [
         NO_ERRORS_SCHEMA

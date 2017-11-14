@@ -1,4 +1,8 @@
-<button (click)="auth.login()" *ngIf="!(auth.user | async); else showLogout">login</button>
+<button class="navswitch item" (click)="navService.sidenav = !navService.sidenav" [ngClass]="{'exp':navService.sidenav}"></button>
+<!--Stuff here is left-->
+<div class="spacer"></div>
+<!--Stuff here is right-->
+<button class="item" (click)="auth.login()" *ngIf="!(auth.user | async); else showLogout">login</button>
 <ng-template #showLogout>
-    <button (click)="auth.logout()">logout</button>
+    <button (click)="auth.logout()" class="item">logout</button>
 </ng-template>

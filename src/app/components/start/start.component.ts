@@ -9,7 +9,7 @@ import {Component} from '@angular/core';
  * Start screen
  */
 export class StartComponent {
-
+    public test: number[] = new Array(50);
 }
 
 

@@ -1,5 +1,30 @@
+@import "../../../styles/variables";
+@import "../../../styles/mixins";
+
 :host{
-  height: 50px;
-  width: 100%;
-  background-color: aquamarine;
+  background-color: $color1;
+  display: flex;
+  flex-direction: row;
+
+  .item{
+    height: $navheight;
+    min-width: $navheight;
+  }
+
+  .spacer{
+    display: flex;
+    flex-grow: 1;
+  }
+
+  .navswitch{
+    background-image: url($public_path + "/assets/menu.svg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    @include transition(all,$defanidur,0s,ease-in-out);
+
+    &.exp{
+      background-image: url($public_path + "/assets/arrow.svg");
+    }
+  }
 }

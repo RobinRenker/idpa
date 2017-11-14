@@ -1,5 +1,8 @@
+@import "../../../styles/variables";
+
 :host{
-  background-color: #209f2a;
+  background-color: $color2;
   display: flex;
   flex-grow: 1;
+  overflow: scroll;
 }
