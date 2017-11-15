@@ -21,6 +21,7 @@ import { HomeComponent } from './components/home/home.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { StartComponent } from './components/start/start.component';
 import { SidenavComponent } from "./components/sidenav/sidenav.component";
+import { AppMaterialModule } from './app.material-module';
 
 @NgModule({
     bootstrap: [
@@ -40,7 +41,9 @@ import { SidenavComponent } from "./components/sidenav/sidenav.component";
         BrowserAnimationsModule,
         AngularFireModule.initializeApp(environment.firebase),
         AngularFirestoreModule,
-        AngularFireAuthModule
+        AngularFireAuthModule,
+        AppMaterialModule
+
     ],
     providers: [
         TextService,

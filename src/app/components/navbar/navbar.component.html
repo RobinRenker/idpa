@@ -2,7 +2,7 @@
 <!--Stuff here is left-->
 <div class="spacer"></div>
 <!--Stuff here is right-->
-<button class="item" (click)="auth.login()" *ngIf="!(auth.user | async); else showLogout">login</button>
+<button mat-button class="item" (click)="auth.login()" *ngIf="!(auth.user | async); else showLogout">login</button>
 <ng-template #showLogout>
-    <button (click)="auth.logout()" class="item">logout</button>
+    <button mat-button (click)="auth.logout()" class="item">logout</button>
 </ng-template>

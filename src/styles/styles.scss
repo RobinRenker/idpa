@@ -1,4 +1,7 @@
 @import "./variables";
+
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
 html,body{
   margin: 0;
   padding: 0;
@@ -6,19 +9,4 @@ html,body{
   height: 100%;
   width: 100%;
 }
-button{
-  padding:0;
-  margin:0;
-  border:none;
-  cursor: pointer;
-  background:none;
-}
-button:hover{
-  background-color: $hovercolor;
-}
-button:active{
-  background-color: $activecolor;
-}
-button:focus{
-  outline: none;
-}
+
