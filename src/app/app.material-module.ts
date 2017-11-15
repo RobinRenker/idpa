@@ -1,18 +1,20 @@
 import {
-     MatButtonModule
+    MatButtonModule, MatIconModule, MatIconRegistry, MatToolbarModule
 } from '@angular/material';
 import { NgModule } from '@angular/core';
-
+import { DomSanitizer } from '@angular/platform-browser';
 
 /**
  * Custom Module for Material Components
  */
 @NgModule({
     imports:
-        [MatButtonModule],
+        [MatButtonModule, MatToolbarModule, MatIconModule],
 
     exports:
-        [MatButtonModule],
+        [MatButtonModule, MatToolbarModule, MatIconModule],
 })
 export class AppMaterialModule {
+
+
 }

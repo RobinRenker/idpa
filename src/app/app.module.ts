@@ -1,4 +1,4 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, DomSanitizer } from '@angular/platform-browser';
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -22,6 +22,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { StartComponent } from './components/start/start.component';
 import { SidenavComponent } from "./components/sidenav/sidenav.component";
 import { AppMaterialModule } from './app.material-module';
+import { MatIconRegistry } from '@angular/material';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
     bootstrap: [
@@ -42,7 +44,8 @@ import { AppMaterialModule } from './app.material-module';
         AngularFireModule.initializeApp(environment.firebase),
         AngularFirestoreModule,
         AngularFireAuthModule,
-        AppMaterialModule
+        AppMaterialModule,
+        HttpClientModule
 
     ],
     providers: [
@@ -56,5 +59,7 @@ import { AppMaterialModule } from './app.material-module';
     ],
 })
 export class AppModule {
-
+    constructor(matIconRegistry: MatIconRegistry, domSanitizer: DomSanitizer){
+        matIconRegistry.addSvgIconSet(domSanitizer.bypassSecurityTrustResourceUrl('./assets/mdi.svg'))
+    }
 }
