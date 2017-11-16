@@ -24,6 +24,7 @@ import { SidenavComponent } from "./components/sidenav/sidenav.component";
 import { AppMaterialModule } from './app.material-module';
 import { MatIconRegistry } from '@angular/material';
 import { HttpClientModule } from '@angular/common/http';
+import { NoContentComponent } from './components/no-content/no-content.component';
 
 @NgModule({
     bootstrap: [
@@ -34,7 +35,8 @@ import { HttpClientModule } from '@angular/common/http';
         NavbarComponent,
         HomeComponent,
         StartComponent,
-        SidenavComponent
+        SidenavComponent,
+        NoContentComponent
     ],
     imports: [
         BrowserModule,

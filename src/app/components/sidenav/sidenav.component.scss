@@ -1,6 +1,48 @@
-:host{
-  background-color: blue;
-  background-image: url("https://b.zmtcdn.com/data/menus/857/16713857/d4d15198507a9e8a72213dd7574c9665.jpg");
-  background-position: center;
-  background-size: cover;
+@import "../../../styles/theme";
+
+$sidenav-spacing-unit: 8px;
+
+:host {
+  width: 200px;
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  // Sidenav navigation item
+  li {
+
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    margin: 0;
+    padding: 0;
+
+    // Hide the border on the last item
+    &:last-child {
+      border-color: transparent;
+    }
+
+    > a {
+      box-sizing: border-box;
+      display: block;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: ($sidenav-spacing-unit * 6) - 1;
+      text-decoration: none;
+      transition: all .3s;
+      padding: 0 ($sidenav-spacing-unit * 2);
+      position: relative;
+
+      &.active {
+        font-weight: 600;
+      }
+
+    }
+
+  }
+
 }
+
+
+
+

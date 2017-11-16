@@ -1,8 +1,10 @@
 <navbar></navbar>
-<sidenav [ngClass]="{'exp':navService.sidenav}"></sidenav>
-<div class="app-content">
+<mat-sidenav-container class="mat-typography">
+    <mat-sidenav mode="over" [opened]="navService.sidenav" (openedChange)="navService.sidenav = $event">
+        <sidenav></sidenav>
+    </mat-sidenav>
     <router-outlet></router-outlet>
-</div>
+</mat-sidenav-container>
 
 
 <!--<h1>Test content</h1>

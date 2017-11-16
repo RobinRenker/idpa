@@ -1,10 +1,11 @@
-<mat-toolbar>
-    <button mat-icon-button class="navswitch item" (click)="navService.sidenav = !navService.sidenav" [ngClass]="{'exp':navService.sidenav}">
-        <mat-icon svgIcon="home">home</mat-icon>
+<mat-toolbar color="primary">
+    <button mat-icon-button (click)="navService.sidenav = !navService.sidenav" [ngClass]="{'exp':navService.sidenav}">
+        <mat-icon svgIcon="menu"></mat-icon>
     </button>
-    <span>CO2 Tracker</span> <span class="example-fill-remaining-space"></span>
-    <button mat-button class="item" (click)="auth.login()" *ngIf="!(auth.user | async); else showLogout">login</button>
+    <span>CO<span class="sub">2</span> Tracker</span>
+    <span class="fill-remaining-space"></span>
+    <button mat-raised-button color="accent" class="item" (click)="auth.login()" *ngIf="!(auth.isAuthenticated | async); else showLogout">login</button>
     <ng-template #showLogout>
-        <button mat-button (click)="auth.logout()" class="item">logout</button>
+        <button mat-raised-button color="accent" (click)="auth.logout()">logout</button>
     </ng-template>
 </mat-toolbar>

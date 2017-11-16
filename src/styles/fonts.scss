@@ -1,6 +1,6 @@
 @import 'variables';
 
-@import url('https://fonts.googleapis.com/css?family=Chewy|Lobster|UnifrakturMaguntia|Rubik');
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500');
 
 /*
 font-family: 'Courgette', cursive;
@@ -10,43 +10,4 @@ font-family: 'Rubik', sans-serif;
  */
 
 
-h1{
-  font-size: (7 * $font-size-base);
-  line-height: (8 * $font-size-base);
-  @media(max-width: $breakpoint-mobile) {
-    font-size: (5 * $font-size-base);
-    line-height: (6 * $font-size-base);
-  }
-}
-h2{
-  line-height: 40px;
-  font-size: 40px;
-  @media(max-width: $breakpoint-mobile) {
-    line-height: 30px;
-    font-size: 30px;
-  }
-}
-p{
-  font-size: (3 * $font-size-base);
-  line-height: (4 * $font-size-base);
-  margin: (2 * $padding-base);
-  @media(max-width: $breakpoint-mobile) {
-    font-size: (2 * $font-size-base);
-    line-height: (3 * $font-size-base);
-    margin: $padding-base;
-  }
-}
 
-.coast{
-  font-family: 'Lobster', cursive;;
-  color: $fancy-color;
-}
-.oldschool{
-  font-family: 'UnifrakturMaguntia', cursive;;
-  color: $oldschool-color;
-}
-.modern{
-  //font-family: 'Rubik', sans-serif;
-  font-family: 'Lobster', sans-serif, cursive;
-  color: $modern-color;
-}

@@ -1,8 +1,6 @@
-@import "../../../styles/variables";
+@import "../../../styles/theme";
 
 :host{
-  background-color: $color2;
-  display: flex;
-  flex-grow: 1;
-  overflow: scroll;
+  background-color: mat-color($app-primary,100);
+
 }

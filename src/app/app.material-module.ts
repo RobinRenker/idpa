@@ -1,5 +1,5 @@
 import {
-    MatButtonModule, MatIconModule, MatIconRegistry, MatToolbarModule
+    MatButtonModule, MatIconModule, MatIconRegistry, MatSidenavModule, MatToolbarModule
 } from '@angular/material';
 import { NgModule } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -9,10 +9,10 @@ import { DomSanitizer } from '@angular/platform-browser';
  */
 @NgModule({
     imports:
-        [MatButtonModule, MatToolbarModule, MatIconModule],
+        [MatButtonModule, MatToolbarModule, MatIconModule, MatSidenavModule],
 
     exports:
-        [MatButtonModule, MatToolbarModule, MatIconModule],
+        [MatButtonModule, MatToolbarModule, MatIconModule, MatSidenavModule],
 })
 export class AppMaterialModule {
 

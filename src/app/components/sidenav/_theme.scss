@@ -1,0 +1,29 @@
+@import '~@angular/material/theming';
+
+
+@mixin sidenav-theme($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, warn);
+  $background: map-get($theme, background);
+  $foreground: map-get($theme, foreground);
+
+  mat-sidenav {
+
+    // Sidenav navigation items
+    li {
+      border-color: rgba(mat-color($foreground, secondary-text), .06);
+      color: mat-color($foreground, secondary-text);
+
+      > a {
+        color: mat-color($foreground, secondary-text);
+        &.active,
+        &:hover,
+        &:focus {
+          background: mat-color($background, background);
+          color: mat-color($primary);
+        }
+      }
+    }
+  }
+}
