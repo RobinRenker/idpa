@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import { AuthService } from '../../auth/auth.service';
+import { DistanceService } from '../../providers/distance.service';
 
 @Component({
     selector: 'home',
@@ -11,7 +12,11 @@ import { AuthService } from '../../auth/auth.service';
  */
 export class HomeComponent {
 
-    constructor(public auth: AuthService){}
+    constructor(public auth: AuthService, public dist: DistanceService){
+        dist.getDistance().then((res)=>{
+            console.log(res);
+        });
+    }
 }
 
 

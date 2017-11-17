@@ -25,6 +25,7 @@ import { AppMaterialModule } from './app.material-module';
 import { MatIconRegistry } from '@angular/material';
 import { HttpClientModule } from '@angular/common/http';
 import { NoContentComponent } from './components/no-content/no-content.component';
+import { DistanceService } from './providers/distance.service';
 
 @NgModule({
     bootstrap: [
@@ -54,7 +55,8 @@ import { NoContentComponent } from './components/no-content/no-content.component
         TextService,
         AuthGuardService,
         AuthService,
-        NavService
+        NavService,
+        DistanceService
     ],
     schemas: [
         NO_ERRORS_SCHEMA
