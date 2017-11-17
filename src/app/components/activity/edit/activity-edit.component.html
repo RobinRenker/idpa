@@ -1,0 +1,17 @@
+<div>
+    <h1>Hier kann eine Aktivität bearbeitet/erstellt werden</h1>
+</div>
+
+    <input type="text" title="aktivität">
+
+
+    <mat-form-field>
+        <mat-select placeholder="Fortbewegungsmittel"  [formControl]="animalControl" required>
+            <mat-option>--</mat-option>
+            <mat-option *ngFor="let animal of transport_modes" [value]="animal">
+                {{animal.name}}
+            </mat-option>
+        </mat-select>
+        <mat-error *ngIf="animalControl.hasError('required')">Wählen Sie ein Transportmittel</mat-error>
+        <mat-hint>{{animalControl.value?.sound}}</mat-hint>
+    </mat-form-field>

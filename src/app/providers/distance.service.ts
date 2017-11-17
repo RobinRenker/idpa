@@ -20,12 +20,11 @@ export class DistanceService {
     public getDistance(origin: LatLng, destination: LatLng): Promise<DistanceMatrixResponseElement> {
         return new Promise(function (resolve, reject) {
             var service = new google.maps.DistanceMatrixService();
-            var origin1 = new LatLng(55.930385, -3.118425);
-            var destinationA = new LatLng(50.087692, 14.421150);
+
             service.getDistanceMatrix(
                 {
-                    origins: [origin1],
-                    destinations: [destinationA],
+                    origins: [origin],
+                    destinations: [destination],
                     travelMode: TravelMode.DRIVING,
                     unitSystem: UnitSystem.METRIC,
                     avoidHighways: false,

@@ -1,6 +1,8 @@
 import {Component} from '@angular/core';
 import { AuthService } from '../../auth/auth.service';
 import { DistanceService } from '../../providers/distance.service';
+import {} from '@types/googlemaps';
+import LatLng = google.maps.LatLng;
 
 @Component({
     selector: 'home',
@@ -13,7 +15,7 @@ import { DistanceService } from '../../providers/distance.service';
 export class HomeComponent {
 
     constructor(public auth: AuthService, public dist: DistanceService){
-        dist.getDistance().then((res)=>{
+        dist.getDistance(new LatLng(1,1),new LatLng(1.2,1)).then((res)=>{
             console.log(res);
         });
     }

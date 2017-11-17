@@ -2,7 +2,7 @@
     <ul>
 
         <li *ngFor="let view of views">
-            <a (click)="navService.sidenav = false" [routerLink]=" ['.', view.id ] " routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+            <a *ngIf="((auth.isAuthenticated | async) || !view.login)" (click)="navService.sidenav = false" [routerLink]=" ['.', view.id ] " routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
                 <button mat-icon-button tabindex="-1">
                     <mat-icon [svgIcon]="view.icon"></mat-icon>
                 </button>
