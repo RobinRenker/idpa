@@ -15,9 +15,9 @@ import LatLng = google.maps.LatLng;
 export class HomeComponent {
 
     constructor(public auth: AuthService, public dist: DistanceService){
-        dist.getDistance(new LatLng(1,1),new LatLng(1.2,1)).then((res)=>{
-            console.log(res);
-        });
+
+
+
     }
 }
 

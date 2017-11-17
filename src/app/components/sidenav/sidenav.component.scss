@@ -4,6 +4,18 @@ $sidenav-spacing-unit: 8px;
 
 :host {
   width: 200px;
+
+  .no-card{
+    outline: none;
+    padding-left: 16px;
+    padding-top: 16px;
+    padding-bottom: 0;
+    box-shadow: none;
+    &:focus,&:active{
+      box-shadow: none;
+    }
+  }
+
   ul {
     list-style-type: none;
     margin: 0;
@@ -13,14 +25,10 @@ $sidenav-spacing-unit: 8px;
   // Sidenav navigation item
   li {
 
-    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
     margin: 0;
     padding: 0;
 
-    // Hide the border on the last item
-    &:last-child {
-      border-color: transparent;
-    }
 
     > a {
       box-sizing: border-box;

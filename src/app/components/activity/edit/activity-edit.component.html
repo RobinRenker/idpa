@@ -4,6 +4,9 @@
 
     <input type="text" title="aktivität">
 
+    <div id="map" class="map"></div>
+
+    <h3>Die Distanz zwischen den Markern beträgt {{distance?.distance.text || "X km"}} mit dem Auto</h3>
 
     <mat-form-field>
         <mat-select placeholder="Fortbewegungsmittel"  [formControl]="animalControl" required>
@@ -15,3 +18,5 @@
         <mat-error *ngIf="animalControl.hasError('required')">Wählen Sie ein Transportmittel</mat-error>
         <mat-hint>{{animalControl.value?.sound}}</mat-hint>
     </mat-form-field>
+
+<button mat-raised-button color="primary" (click)="calc()">Strecke berechnen</button>

@@ -1,4 +1,12 @@
 <nav>
+    <mat-card class="no-card" *ngIf="auth.isAuthenticated | async" tabindex="-1">
+        <mat-card-header>
+            <img mat-card-avatar [src]="(auth.user | async)?.photoURL">
+            <mat-card-title>Hallo!</mat-card-title>
+            <mat-card-subtitle>{{(auth.user | async)?.displayName}}</mat-card-subtitle>
+        </mat-card-header>
+    </mat-card>
+
     <ul>
 
         <li *ngFor="let view of views">
@@ -9,4 +17,6 @@
                 <span class="nav-text">{{view.name}}</span> </a>
         </li>
     </ul>
+
+
 </nav>
