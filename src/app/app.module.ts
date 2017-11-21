@@ -15,6 +15,7 @@ import { TextService } from './providers/text.service';
 import { AuthService } from './auth/auth.service';
 import { AuthGuardService } from './auth/auth-guard.service';
 import { NavService } from './providers/nav.service';
+import { DistanceService } from './providers/distance.service';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
@@ -25,8 +26,8 @@ import { AppMaterialModule } from './app.material-module';
 import { MatIconRegistry } from '@angular/material';
 import { HttpClientModule } from '@angular/common/http';
 import { NoContentComponent } from './components/no-content/no-content.component';
-import { DistanceService } from './providers/distance.service';
 import { ActivityModule } from './activity/activity.module';
+import { VehicleModule } from "./vehicle/vehicle.module";
 
 @NgModule({
     bootstrap: [
@@ -50,6 +51,7 @@ import { ActivityModule } from './activity/activity.module';
         AppMaterialModule,
         HttpClientModule,
         ActivityModule,
+        VehicleModule,
         AppRoutingModule
     ],
     providers: [

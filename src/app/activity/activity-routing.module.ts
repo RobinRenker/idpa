@@ -23,5 +23,4 @@ const activityRoutes: Routes = [
 })
 export class ActivityRoutingModule {
 
-
 }
