@@ -2,13 +2,15 @@ import { NgModule }             from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ActivityListComponent } from './list/activity-list.component';
 import { ActivityEditComponent } from './edit/activity-edit.component';
+import {AuthGuardService} from "../auth/auth-guard.service";
 
 
 const activityRoutes: Routes = [
-    { path: '', component: ActivityListComponent },
-    { path: 'activities',  component: ActivityListComponent },
-    { path: 'activity/:id', component: ActivityEditComponent },
-    { path: 'activity', component: ActivityEditComponent },
+    {path: 'activities', canActivate:[AuthGuardService], children: [
+        { path : 'list', component: ActivityListComponent },
+        { path : 'add', component : ActivityEditComponent},
+        { path : 'edit/:id', component: ActivityEditComponent },
+    ]}
 ];
 
 @NgModule({

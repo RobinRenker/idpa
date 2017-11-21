@@ -26,7 +26,7 @@ import { MatIconRegistry } from '@angular/material';
 import { HttpClientModule } from '@angular/common/http';
 import { NoContentComponent } from './components/no-content/no-content.component';
 import { DistanceService } from './providers/distance.service';
-import { ActivityModule } from './components/activity/activity.module';
+import { ActivityModule } from './activity/activity.module';
 
 @NgModule({
     bootstrap: [

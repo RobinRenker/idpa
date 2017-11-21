@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../../../auth/auth.service';
-import { DistanceService } from '../../../providers/distance.service';
+import { AuthService } from '../../auth/auth.service';
+import { DistanceService } from '../../providers/distance.service';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { FormControl, Validators } from '@angular/forms';
 import LatLng = google.maps.LatLng;
