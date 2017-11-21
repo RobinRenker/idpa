@@ -51,8 +51,6 @@ import { ActivityModule } from './components/activity/activity.module';
         HttpClientModule,
         ActivityModule,
         AppRoutingModule
-
-
     ],
     providers: [
         TextService,
