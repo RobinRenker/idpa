@@ -6,6 +6,10 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AppRoutingModule } from './app-routing.module';
+import { AppMaterialModule } from './app.material-module';
+import { MatIconRegistry } from '@angular/material';
+import { HttpClientModule } from '@angular/common/http';
+import { FlexLayoutModule } from '@angular/flex-layout'
 
 import '../styles/styles.scss';
 
@@ -22,9 +26,6 @@ import { HomeComponent } from './components/home/home.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { StartComponent } from './components/start/start.component';
 import { SidenavComponent } from "./components/sidenav/sidenav.component";
-import { AppMaterialModule } from './app.material-module';
-import { MatIconRegistry } from '@angular/material';
-import { HttpClientModule } from '@angular/common/http';
 import { NoContentComponent } from './components/no-content/no-content.component';
 import { ActivityModule } from './activity/activity.module';
 import { VehicleModule } from "./vehicle/vehicle.module";
@@ -52,7 +53,8 @@ import { VehicleModule } from "./vehicle/vehicle.module";
         HttpClientModule,
         ActivityModule,
         VehicleModule,
-        AppRoutingModule
+        AppRoutingModule,
+        FlexLayoutModule
     ],
     providers: [
         TextService,

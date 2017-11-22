@@ -17,6 +17,7 @@ export class SidenavComponent {
         {name: 'Über', id: 'about', icon: 'information-outline', login: false}];
 
     constructor(public navService: NavService, public auth: AuthService) {
+        
     }
 }
 
