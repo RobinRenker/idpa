@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { AppMaterialModule } from '../app.material-module';
 import { CommonModule } from '@angular/common';
-import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { HttpClientModule } from '@angular/common/http';
@@ -26,7 +25,6 @@ import { VehicleListComponent } from "./list/vehicle-list.component";
         AppMaterialModule,
         HttpClientModule,
         ReactiveFormsModule,
-        FlexLayoutModule
     ],
     providers: [
         AuthGuardService,

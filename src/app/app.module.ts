@@ -9,7 +9,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppMaterialModule } from './app.material-module';
 import { MatIconRegistry } from '@angular/material';
 import { HttpClientModule } from '@angular/common/http';
-import { FlexLayoutModule } from '@angular/flex-layout'
 
 import '../styles/styles.scss';
 
@@ -53,8 +52,7 @@ import { VehicleModule } from "./vehicle/vehicle.module";
         HttpClientModule,
         ActivityModule,
         VehicleModule,
-        AppRoutingModule,
-        FlexLayoutModule
+        AppRoutingModule
     ],
     providers: [
         TextService,
