@@ -1,6 +1,6 @@
 <navbar></navbar>
-<mat-sidenav-container class="mat-typography">
-    <mat-sidenav mode="over" [opened]="navService.sidenav" (openedChange)="navService.sidenav = $event">
+<mat-sidenav-container class="mat-typography" (backdropClick)="navService.sidenav = false">
+    <mat-sidenav mode="over" [opened]="navService.sidenav" disableClose>
         <sidenav></sidenav>
     </mat-sidenav>
     <router-outlet></router-outlet>
