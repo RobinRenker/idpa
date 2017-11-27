@@ -1,6 +1,4 @@
 
-
-
 import { ActivityListComponent } from './list/activity-list.component';
 import { NgModule } from '@angular/core';
 import { AppMaterialModule } from '../app.material-module';

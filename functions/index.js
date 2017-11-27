@@ -14,13 +14,13 @@ exports.sendWelcomeEmail = functions.auth.user().onCreate(function (event) {
     var uid = event.data.uid;
     var displayName = event.data.displayName;
 
+    var newUserRef = admin.firestore().collection("users").doc(uid);
 
 
-    admin.firestore().collection("users").add({
-        first: "HURE TEST",
-        last: "SOHN",
+    newUserRef.set({
         uid: uid,
-        username: displayName
+        username: displayName,
+        activities: []
     });
 
 
