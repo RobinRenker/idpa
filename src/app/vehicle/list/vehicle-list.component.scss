@@ -5,8 +5,23 @@
   height: 100%;
   overflow-y: scroll;
   flex-direction: column;
+  background-color: #FFF;
 
-  .tile {
+  .spinner{
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+  }
+
+  vehicle-detail {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    cursor: pointer;
+
+    &:hover{
+      background-color: #fafafa;
+    }
+
     &.col1 {
       background-color: $color_car;
     }

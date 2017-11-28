@@ -7,11 +7,11 @@ import { Vehicle } from "../interfaces/vehicle";
 export class VehicleService {
 
     //public vehicles: Observable<Vehicle[]>;
-    public vehicles: Vehicle[];
+    public vehicles: Vehicle[] = undefined;
 
     constructor(public db: AngularFirestore){
         let obs: Observable<any[]> = db.collection('vehicles', ref => ref.where("public","==",true)).valueChanges();
-            
+
         obs.subscribe((value) => {
             let tmpv: Vehicle[] = [];
             for(let i = 0; i < value.length; i++){

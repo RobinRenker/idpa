@@ -1,6 +1,5 @@
 :host{
   width: 100%;
-  min-height: 200px;
   display: flex;
   flex-direction: column;
 
@@ -10,7 +9,8 @@
       float: right;
     }
   }
-  h2{
+  h1{
     text-align: center;
+    margin: 0;
   }
 }
