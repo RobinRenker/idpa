@@ -1,0 +1,16 @@
+:host{
+  width: 100%;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+
+  .edit{
+    height: 40px;
+    button{
+      float: right;
+    }
+  }
+  h2{
+    text-align: center;
+  }
+}

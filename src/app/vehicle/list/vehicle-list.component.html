@@ -1,5 +1,3 @@
-<mat-grid-list cols="2" rowHeight="1:1">
-    <mat-grid-tile *ngFor="let vehicle of vehicles | async">
-        <p>{{vehicle.description}}</p>
-    </mat-grid-tile>
-</mat-grid-list>
+<vehicle-detail *ngFor="let vehicle of vehicleService.vehicles | async" class="tile" [ngClass]="'col'+vehicle.type" [vehicle]="vehicle">
+
+</vehicle-detail>

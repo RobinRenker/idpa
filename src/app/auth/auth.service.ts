@@ -20,7 +20,7 @@ export class AuthService {
     }
 
     private state: Observable<boolean>;
-    private user: Observable<User>;
+    public user: Observable<User>;
 
     /**
      * Is the user logged in

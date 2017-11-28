@@ -19,6 +19,7 @@ import { AuthService } from './auth/auth.service';
 import { AuthGuardService } from './auth/auth-guard.service';
 import { NavService } from './providers/nav.service';
 import { DistanceService } from './providers/distance.service';
+import { VehicleService } from './providers/vehicle.service';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
@@ -59,7 +60,8 @@ import { VehicleModule } from "./vehicle/vehicle.module";
         AuthGuardService,
         AuthService,
         NavService,
-        DistanceService
+        DistanceService,
+        VehicleService
     ],
     schemas: [
         NO_ERRORS_SCHEMA

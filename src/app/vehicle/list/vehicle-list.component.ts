@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { AngularFirestore } from 'angularfire2/firestore';
-import { Observable } from 'rxjs/Observable';
+import { VehicleService } from "../../providers/vehicle.service";
 
 @Component({
     selector: 'vehicle-list',
@@ -10,10 +9,8 @@ import { Observable } from 'rxjs/Observable';
 
 export class VehicleListComponent {
 
-    public vehicles: Observable<any[]>;
+    constructor(public vehicleService: VehicleService){
 
-    constructor(public db: AngularFirestore){
-        this.vehicles = db.collection('vehicles').valueChanges();
     }
 }
 
