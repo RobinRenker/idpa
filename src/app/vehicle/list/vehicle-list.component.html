@@ -1,6 +1,6 @@
-<vehicle-detail *ngFor="let vehicle of vehicleService.vehicles" [vehicle]="vehicle">
+<vehicle-detail *ngFor="let vehicle of vehicleService.vehicles | async" [vehicle]="vehicle">
 
 </vehicle-detail>
-<div class="spinner" *ngIf="vehicleService.vehicles == undefined">
+<div class="spinner" *ngIf="!(vehicleService.vehicles | async)">
     <mat-spinner></mat-spinner>
 </div>

@@ -10,7 +10,7 @@ const functions = require('firebase-functions');
 const admin = require('firebase-admin');
 admin.initializeApp(functions.config().firebase);
 
-exports.sendWelcomeEmail = functions.auth.user().onCreate(function (event) {
+exports.createUser = functions.auth.user().onCreate(function (event) {
     var uid = event.data.uid;
     var displayName = event.data.displayName;
 
@@ -22,6 +22,8 @@ exports.sendWelcomeEmail = functions.auth.user().onCreate(function (event) {
         username: displayName,
         activities: []
     });
+
+    return true;
 
 
 });

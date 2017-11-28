@@ -2,30 +2,25 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { Observable } from 'rxjs/Observable';
 import { Vehicle } from "../interfaces/vehicle";
+import {AngularFirestoreCollection} from "angularfire2/firestore/collection/collection";
+import {AuthService} from "../auth/auth.service";
 
 @Injectable()
 export class VehicleService {
 
-    //public vehicles: Observable<Vehicle[]>;
-    public vehicles: Vehicle[] = undefined;
+    public vehicles: Observable<Vehicle[]>;
+    private itemsCollection: AngularFirestoreCollection<Vehicle>;
 
-    constructor(public db: AngularFirestore){
-        let obs: Observable<any[]> = db.collection('vehicles', ref => ref.where("public","==",true)).valueChanges();
 
-        obs.subscribe((value) => {
-            let tmpv: Vehicle[] = [];
-            for(let i = 0; i < value.length; i++){
-                tmpv.push(new Vehicle(
-                    value[i].type,
-                    value[i].name,
-                    value[i].emissions,
-                    value[i].usage,
-                    value[i].maxPassengers,
-                    value[i].author
-                ));
-            }
-            this.vehicles = tmpv;
+    constructor(public db: AngularFirestore, auth: AuthService){
+        auth.user.subscribe((user)=>{
+            console.log(user.uid);
+            this.itemsCollection = db.collection<Vehicle>('vehicles', ref => ref.where("public","==",true)/*.where("author","==",user.uid)*/);
+            this.vehicles = this.itemsCollection.valueChanges();
         });
+        console.log("bla");
+
+
     }
 
     public getVehicle(id:string): Observable<Vehicle>{
