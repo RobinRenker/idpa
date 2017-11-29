@@ -1,4 +1,4 @@
-<vehicle-detail *ngFor="let vehicle of vehicleService.vehicles | async" [vehicle]="vehicle">
+<vehicle-detail *ngFor="let vehicle of vehicleService.vehicles | async; let i = index" [vehicle]="vehicle">
 
 </vehicle-detail>
 <div class="spinner" *ngIf="!(vehicleService.vehicles | async)">

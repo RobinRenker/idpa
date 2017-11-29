@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, HostBinding } from '@angular/core';
 import { VehicleService } from "../../providers/vehicle.service";
 import { Vehicle } from "../../interfaces/vehicle";
 
@@ -11,6 +11,7 @@ import { Vehicle } from "../../interfaces/vehicle";
 export class VehicleDetailComponent {
 
     @Input() vehicle: Vehicle;
+    @HostBinding('class.expanded') expanded: boolean = false;
 
     constructor(public vehicleService: VehicleService){
 

@@ -9,9 +9,7 @@ import { VehicleService } from "../../providers/vehicle.service";
 
 export class VehicleListComponent {
 
-    constructor(public vehicleService: VehicleService){
-
-    }
+    constructor(public vehicleService: VehicleService){}
 }
 
 
