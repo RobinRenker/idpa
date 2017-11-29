@@ -16,12 +16,13 @@ export class VehicleService {
 
     constructor(public db: AngularFirestore, auth: AuthService){
         auth.user.subscribe((user)=>{
-            console.log(user.uid);
             this.publicVehicleCollection = db.collection<Vehicle>('vehicles', ref => ref.where("public","==",true)/*.where("author","==",user.uid)*/);
             this.myVehicleCollection = db.collection<Vehicle>('vehicles', ref => ref.where("author","==",user.uid));
             this.publicVehicles = this.publicVehicleCollection.valueChanges();
             this.myVehicles = this.myVehicleCollection.valueChanges();
         });
+
+
     }
 
     public getVehicle(id:string): Observable<Vehicle>{

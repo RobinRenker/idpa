@@ -1,6 +1,5 @@
 import {Component} from '@angular/core';
-import { AuthService } from '../../auth/auth.service';
-import { DistanceService } from '../../providers/distance.service';
+import { ActivityService } from '../../providers/activity.service';
 
 @Component({
     selector: 'activity-list',
@@ -12,7 +11,7 @@ import { DistanceService } from '../../providers/distance.service';
  */
 export class ActivityListComponent {
 
-    constructor(public auth: AuthService){
+    constructor(public activityService: ActivityService){
     }
 }
 

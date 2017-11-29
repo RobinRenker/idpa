@@ -51,6 +51,15 @@ export class ActivityEditComponent implements OnInit{
             center: {lat: -34.397, lng: 150.644},
             zoom: 8
         });
+
+        //Prevent font change
+        google.maps.event.addListenerOnce(map,'idle',function(){
+            let font=document.querySelector('link[href$="//fonts.googleapis.com/css?family=Roboto:300,400,500,700"]');
+            if(font){
+                font.parentNode.removeChild(font);
+            }
+        });
+
         this.originMarker = new Marker({
             draggable: true,
             position: {lat: -34.397, lng: 150.644},

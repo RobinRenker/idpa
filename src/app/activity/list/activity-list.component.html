@@ -1,3 +1,13 @@
-<div>
-    <h1>Hier sind alle deine Aktivitäten aufgelistet</h1>
-</div>
+<h2>Meine Aktivitäten</h2>
+
+
+
+<mat-list>
+    <mat-list-item *ngFor="let activity of activityService.activities | async">
+        <mat-icon matListIcon svgIcon="train"></mat-icon>
+        <h3 matLine> {{activity.time | date:'d.M.yyyy, HH:mm'}} </h3>
+        <p matLine>
+            <span> {{activity.distance}} </span>
+        </p>
+    </mat-list-item>
+</mat-list>

@@ -29,6 +29,7 @@ import { SidenavComponent } from "./components/sidenav/sidenav.component";
 import { NoContentComponent } from './components/no-content/no-content.component';
 import { ActivityModule } from './activity/activity.module';
 import { VehicleModule } from "./vehicle/vehicle.module";
+import { ActivityService } from './providers/activity.service';
 
 @NgModule({
     bootstrap: [
@@ -61,7 +62,8 @@ import { VehicleModule } from "./vehicle/vehicle.module";
         AuthService,
         NavService,
         DistanceService,
-        VehicleService
+        VehicleService,
+        ActivityService
     ],
     schemas: [
         NO_ERRORS_SCHEMA

@@ -3,7 +3,8 @@ import {
     MatSidenavModule,
     MatToolbarModule,
     MatProgressSpinnerModule,
-    MatMenuModule
+    MatMenuModule,
+    MatListModule
 } from '@angular/material';
 import { NgModule } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -22,7 +23,8 @@ import { DomSanitizer } from '@angular/platform-browser';
             MatFormFieldModule,
             MatCardModule,
             MatProgressSpinnerModule,
-            MatMenuModule
+            MatMenuModule,
+            MatListModule
         ],
 
     exports:
@@ -35,7 +37,8 @@ import { DomSanitizer } from '@angular/platform-browser';
             MatFormFieldModule,
             MatCardModule,
             MatProgressSpinnerModule,
-            MatMenuModule
+            MatMenuModule,
+            MatListModule
         ],
 })
 export class AppMaterialModule {

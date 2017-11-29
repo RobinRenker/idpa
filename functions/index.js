@@ -16,11 +16,9 @@ exports.createUser = functions.auth.user().onCreate(function (event) {
 
     var newUserRef = admin.firestore().collection("users").doc(uid);
 
-
     newUserRef.set({
         uid: uid,
-        username: displayName,
-        activities: []
+        username: displayName
     });
 
     return true;
