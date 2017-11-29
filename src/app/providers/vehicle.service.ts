@@ -8,15 +8,19 @@ import {AuthService} from "../auth/auth.service";
 @Injectable()
 export class VehicleService {
 
-    public vehicles: Observable<Vehicle[]>;
-    private itemsCollection: AngularFirestoreCollection<Vehicle>;
+    public publicVehicles: Observable<Vehicle[]>;
+    public myVehicles: Observable<Vehicle[]>;
+    private publicVehicleCollection: AngularFirestoreCollection<Vehicle>;
+    private myVehicleCollection: AngularFirestoreCollection<Vehicle>;
 
 
     constructor(public db: AngularFirestore, auth: AuthService){
         auth.user.subscribe((user)=>{
-            //console.log(user.uid);
-            this.itemsCollection = db.collection<Vehicle>('vehicles', ref => ref.where("public","==",true)/*.where("author","==",user.uid)*/);
-            this.vehicles = this.itemsCollection.valueChanges();
+            console.log(user.uid);
+            this.publicVehicleCollection = db.collection<Vehicle>('vehicles', ref => ref.where("public","==",true)/*.where("author","==",user.uid)*/);
+            this.myVehicleCollection = db.collection<Vehicle>('vehicles', ref => ref.where("author","==",user.uid));
+            this.publicVehicles = this.publicVehicleCollection.valueChanges();
+            this.myVehicles = this.myVehicleCollection.valueChanges();
         });
     }
 
