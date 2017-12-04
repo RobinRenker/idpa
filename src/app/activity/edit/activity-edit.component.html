@@ -1,22 +1,65 @@
 <div>
-    <h1>Hier kann eine Aktivität bearbeitet/erstellt werden</h1>
+    <h1>Aktivität bearbeiten</h1>
 </div>
 
+<div id="map" class="map"></div>
+
+<mat-spinner *ngIf="!activityRef; else showForm"></mat-spinner>
+
+
+
+<ng-template #showForm>
     <input type="text" title="aktivität">
 
-    <div id="map" class="map"></div>
+
 
     <h3>Die Distanz zwischen den Markern beträgt {{distance?.distance.text || "X km"}} mit dem Auto</h3>
 
-    <mat-form-field>
-        <mat-select placeholder="Fortbewegungsmittel"  [formControl]="animalControl" required>
-            <mat-option>--</mat-option>
-            <mat-option *ngFor="let animal of transport_modes" [value]="animal">
-                {{animal.name}}
-            </mat-option>
-        </mat-select>
-        <mat-error *ngIf="animalControl.hasError('required')">Wählen Sie ein Transportmittel</mat-error>
-        <mat-hint>{{animalControl.value?.sound}}</mat-hint>
-    </mat-form-field>
 
-<button mat-raised-button color="primary" (click)="calc()">Strecke berechnen</button>
+
+
+    <form [formGroup]="activityForm" novalidate >
+
+        <!-- MUSS IRGENDWIE IN EINE EIGENE FormComponent
+        <mat-form-field>
+            <mat-select placeholder="Fortbewegungsmittel" formControlName="vehicle" required>
+                <mat-option>--</mat-option>
+                <mat-option *ngFor="let animal of transport_modes" [value]="animal">
+                    {{animal.name}}
+                </mat-option>
+            </mat-select>
+            <mat-error *ngIf="vehicle.hasError('required')">Wählen Sie ein Transportmittel</mat-error>
+            <mat-hint>{{vehicle.value?.sound}}</mat-hint>
+        </mat-form-field>
+
+        -->
+
+        <mat-form-field>
+            <input matInput type="time" placeholder="Startzeit" formControlName="timeString" required>
+        </mat-form-field>
+
+        <mat-form-field>
+            <input matInput [matDatepicker]="picker" placeholder="Datum" required formControlName="time">
+            <mat-datepicker-toggle matSuffix="" [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+    </form>
+
+
+
+
+
+
+
+
+    <button mat-raised-button color="primary" (click)="calc()">Strecke berechnen</button>
+    <button mat-raised-button color="secondary" (click)="saveActivity()">Speichern</button>
+
+
+    <p>{{activityForm.value | json}}</p>
+</ng-template>
+
+<div style="height: 50px;"></div>
+
+

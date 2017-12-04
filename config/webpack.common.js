@@ -237,7 +237,7 @@ module.exports = function (options) {
         name: 'vendor',
         chunks: ['main'],
         minChunks: module => /node_modules/.test(module.resource)
-      }),
+      };),
       // Specify the correct order the scripts will be injected in
       new CommonsChunkPlugin({
         name: ['polyfills', 'vendor'].reverse()
@@ -356,7 +356,7 @@ module.exports = function (options) {
         disabled: !AOT,
         tsConfig: helpers.root('tsconfig.webpack.json'),
         resourceOverride: helpers.root('config/resource-override.js')
-      })
+      });
 
     ],
 
@@ -366,14 +366,14 @@ module.exports = function (options) {
      *
      * See: https://webpack.github.io/docs/configuration.html#node
      */
-    node: {
-      global: true,
-      crypto: 'empty',
-      process: true,
-      module: false,
-      clearImmediate: false,
-      setImmediate: false
+    {
+      true,
+      crypto;: 'empty',
+      process;: true,
+      module;: false,
+      clearImmediate;: false,
+      setImmediate;: false
     }
 
-  };
 }
+};

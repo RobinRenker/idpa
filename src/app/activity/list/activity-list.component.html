@@ -1,13 +1,11 @@
 <h2>Meine Aktivitäten</h2>
-
-
-
-<mat-list>
-    <mat-list-item *ngFor="let activity of activityService.activities | async">
+<mat-nav-list>
+    <a mat-list-item *ngFor="let activity of activityService.activities | async" href="activities/edit/{{activity.payload.doc.id}}">
         <mat-icon matListIcon svgIcon="train"></mat-icon>
-        <h3 matLine> {{activity.time | date:'d.M.yyyy, HH:mm'}} </h3>
+        <h3 matLine > {{activity.payload.doc.data().time | date:'d.M.yyyy, HH:mm'}} </h3>
         <p matLine>
-            <span> {{activity.distance}} </span>
+            <span> {{(activity.payload.doc.data().distance || 0 ) | number:'1.1-5'}}km </span>
         </p>
-    </mat-list-item>
-</mat-list>
+
+    </a>
+</mat-nav-list>

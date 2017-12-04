@@ -4,7 +4,7 @@ import {
     MatToolbarModule,
     MatProgressSpinnerModule,
     MatMenuModule,
-    MatListModule
+    MatListModule, MatInputModule, MatDatepickerModule
 } from '@angular/material';
 import { NgModule } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -24,7 +24,9 @@ import { DomSanitizer } from '@angular/platform-browser';
             MatCardModule,
             MatProgressSpinnerModule,
             MatMenuModule,
-            MatListModule
+            MatListModule,
+            MatInputModule,
+            MatDatepickerModule
         ],
 
     exports:
@@ -38,7 +40,9 @@ import { DomSanitizer } from '@angular/platform-browser';
             MatCardModule,
             MatProgressSpinnerModule,
             MatMenuModule,
-            MatListModule
+            MatListModule,
+            MatInputModule,
+            MatDatepickerModule
         ],
 })
 export class AppMaterialModule {

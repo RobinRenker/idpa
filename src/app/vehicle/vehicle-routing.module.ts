@@ -6,7 +6,8 @@ import { VehicleCreateComponent } from './create/vehicle-create.component';
 import {VehicleListComponent} from "./list/vehicle-list.component";
 
 const activityRoutes: Routes = [
-    {path: 'vehicle', component: VehicleListComponent, canActivate:[AuthGuardService], children: [
+    {path: 'vehicle', canActivate:[AuthGuardService], children: [
+        {path: '', redirectTo: 'list', pathMatch: 'full'},
         { path : 'create', component: VehicleCreateComponent },
         { path : 'list', component: VehicleListComponent },
     ]}

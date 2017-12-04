@@ -12,6 +12,8 @@ import { ActivityService } from '../../providers/activity.service';
 export class ActivityListComponent {
 
     constructor(public activityService: ActivityService){
+        console.log('TEST');
+
     }
 }
 

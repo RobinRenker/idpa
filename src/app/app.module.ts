@@ -7,7 +7,8 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AppRoutingModule } from './app-routing.module';
 import { AppMaterialModule } from './app.material-module';
-import { MatIconRegistry } from '@angular/material';
+import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE, MatIconRegistry } from '@angular/material';
+import {MAT_MOMENT_DATE_FORMATS, MomentDateAdapter} from '@angular/material-moment-adapter';
 import { HttpClientModule } from '@angular/common/http';
 
 import '../styles/styles.scss';
@@ -63,7 +64,10 @@ import { ActivityService } from './providers/activity.service';
         NavService,
         DistanceService,
         VehicleService,
-        ActivityService
+        ActivityService,
+        {provide: MAT_DATE_LOCALE, useValue: 'de-CH'},
+        {provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE]},
+        {provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS},
     ],
     schemas: [
         NO_ERRORS_SCHEMA
