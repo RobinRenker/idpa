@@ -13,12 +13,14 @@ import {VehicleRoutingModule} from "./vehicle-routing.module";
 import {VehicleCreateComponent} from './create/vehicle-create.component';
 import {VehicleListComponent} from "./list/vehicle-list.component";
 import {VehicleDetailComponent} from "./detail/vehicle-detail.component";
+import {VehicleEditComponent} from "./edit/vehicle-edit.component";
 
 @NgModule({
     declarations: [
         VehicleCreateComponent,
         VehicleListComponent,
-        VehicleDetailComponent
+        VehicleDetailComponent,
+        VehicleEditComponent
     ],
     imports: [
         VehicleRoutingModule,

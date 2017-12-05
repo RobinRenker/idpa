@@ -18,11 +18,9 @@ export class VehicleService {
         auth.user.subscribe((user)=>{
             this.publicVehicleCollection = db.collection<Vehicle>('vehicles', ref => ref.where("public","==",true)/*.where("author","==",user.uid)*/);
             this.myVehicleCollection = db.collection<Vehicle>('vehicles', ref => ref.where("author","==",user.uid));
-            this.publicVehicles = this.publicVehicleCollection.valueChanges();
-            this.myVehicles = this.myVehicleCollection.valueChanges();
+            this.publicVehicles = this.publicVehicleCollection.snapshotChanges();
+            this.myVehicles = this.myVehicleCollection.snapshotChanges();
         });
-
-
     }
 
     public getVehicle(id:string): Observable<Vehicle>{

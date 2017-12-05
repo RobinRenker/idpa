@@ -24,21 +24,5 @@
     &:hover{
       background-color: #fafafa;
     }
-
-    &.col1 {
-      background-color: $color_car;
-    }
-    &.col2 {
-      background-color: $color_train;
-    }
-    &.col3 {
-      background-color: $color_ship;
-    }
-    &.col4 {
-      background-color: $color_plane;
-    }
-    &.col5 {
-      background-color: $color_man;
-    }
   }
 }

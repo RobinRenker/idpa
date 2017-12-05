@@ -1,4 +1,4 @@
-import { Component, Input, HostBinding } from '@angular/core';
+import { Component, Input, HostBinding, OnChanges } from '@angular/core';
 import { VehicleService } from "../../providers/vehicle.service";
 import { Vehicle } from "../../interfaces/vehicle";
 
@@ -8,13 +8,20 @@ import { Vehicle } from "../../interfaces/vehicle";
     styleUrls: ['./vehicle-detail.component.scss']
 })
 
-export class VehicleDetailComponent {
+export class VehicleDetailComponent implements OnChanges{
 
-    @Input() vehicle: Vehicle;
+    @Input() id: string;
     @HostBinding('class.expanded') expanded: boolean = false;
 
-    constructor(public vehicleService: VehicleService){
+    public vehicle: Vehicle = new Vehicle();
 
+    constructor(public vehicleService: VehicleService){
+    }
+
+    ngOnChanges(): void {
+        this.vehicleService.getVehicle(this.id).subscribe((val) => {
+            this.vehicle = val;
+        });
     }
 }
 
