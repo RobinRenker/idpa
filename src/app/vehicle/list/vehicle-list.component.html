@@ -1,5 +1,8 @@
 <h2>Meine Fahrzeuge</h2>
 <vehicle-detail *ngFor="let vehicle of vehicleService.myVehicles | async" [id]="vehicle.payload.doc.id"></vehicle-detail>
+<div class="new">
+    <mat-icon aria-label="Edit" svgIcon="plus-circle"></mat-icon>
+</div>
 <div class="spinner" *ngIf="!(vehicleService.myVehicles | async)">
     <mat-spinner></mat-spinner>
 </div>
