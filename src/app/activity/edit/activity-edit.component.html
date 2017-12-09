@@ -2,9 +2,10 @@
     <h1>Aktivität bearbeiten</h1>
 </div>
 
-<div id="map" class="map"></div>
-
 <mat-spinner *ngIf="!activityRef; else showForm"></mat-spinner>
+<div id="map" class="map" [ngClass]="{'hidden' : !activityRef}"></div>
+
+
 
 
 
@@ -41,7 +42,16 @@
         <mat-form-field>
             <input matInput [matDatepicker]="picker" placeholder="Datum" required formControlName="time">
             <mat-datepicker-toggle matSuffix="" [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
+            <mat-datepicker [touchUi]="true" #picker></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field>
+            <input matInput type="text" placeholder="Fahrzeug" formControlName="vehicle" required>
+        </mat-form-field>
+
+        <mat-form-field>
+            <input matInput type="number" placeholder="Distanz" formControlName="distance" required>
+            <span matSuffix>km</span>
         </mat-form-field>
 
     </form>

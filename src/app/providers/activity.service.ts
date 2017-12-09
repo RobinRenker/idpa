@@ -1,14 +1,14 @@
-import { Injectable } from '@angular/core';
-import { AngularFirestore } from 'angularfire2/firestore';
-import { Observable } from 'rxjs/Observable';
-import { AngularFirestoreCollection } from 'angularfire2/firestore/collection/collection';
-import { Activity } from '../interfaces/activity';
-import { AuthService } from '../auth/auth.service';
+import {Injectable} from '@angular/core';
+import {AngularFirestore} from 'angularfire2/firestore';
+import {Observable} from 'rxjs/Observable';
+import {AngularFirestoreCollection} from 'angularfire2/firestore/collection/collection';
+import {Activity} from '../interfaces/activity';
+import {AuthService} from '../auth/auth.service';
 import * as firebase from 'firebase';
 import DocumentReference = firebase.firestore.DocumentReference;
-import { UserInfo } from 'firebase';
+import {UserInfo} from 'firebase';
 import DocumentSnapshot = firebase.firestore.DocumentSnapshot;
-import { Action, DocumentChangeAction } from 'angularfire2/firestore/interfaces';
+import {Action, DocumentChangeAction} from 'angularfire2/firestore/interfaces';
 
 @Injectable()
 export class ActivityService {
@@ -18,7 +18,11 @@ export class ActivityService {
 
     constructor(public db: AngularFirestore, public auth: AuthService) {
         auth.user.subscribe((user) => {
-            this.activityCollection = db.collection<Activity>('activities', ref => ref.where('author', '==', user.uid).orderBy('time', 'desc'));
+            this.activityCollection = db
+                .collection<Activity>(
+                    'activities',
+                    ref => ref.where('author', '==', user.uid)
+                        .orderBy('time', 'desc'));
             this.activities = this.activityCollection.snapshotChanges();
         });
 
@@ -34,11 +38,9 @@ export class ActivityService {
     }
 
 
-
     public get(id: string): Observable<Action<DocumentSnapshot>> {
-        return this.db.doc("activities/"+id).snapshotChanges();
+        return this.db.doc("activities/" + id).snapshotChanges();
     }
-
 
 
 }

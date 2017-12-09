@@ -5,13 +5,15 @@ import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Activity } from '../../interfaces/activity';
 import { ActivityService } from '../../providers/activity.service';
-import { default as firebase } from 'firebase';
+import {default as firebase} from 'firebase';
 import * as moment from 'moment';
 import Marker = google.maps.Marker;
 import Map = google.maps.Map;
 import DistanceMatrixResponseElement = google.maps.DistanceMatrixResponseElement;
 import DocumentSnapshot = firebase.firestore.DocumentSnapshot;
 import DocumentReference = firebase.firestore.DocumentReference;
+import GeoPoint = firebase.firestore.GeoPoint;
+import LatLng = google.maps.LatLng;
 
 @Component({
     selector: 'activity-edit',
@@ -30,7 +32,7 @@ export class ActivityEditComponent implements OnInit, OnChanges {
             timeString: ['', Validators.required],
             start: ['', Validators.required],
             end: ['', Validators.required],
-            distance: ['0', Validators.required],
+            distance: [0, Validators.required],
             vehicle: ['', Validators.required]
         });
 
@@ -45,6 +47,7 @@ export class ActivityEditComponent implements OnInit, OnChanges {
 
     public originMarker: Marker;
     public destinationMarker: Marker;
+    public map: Map;
     public distance: DistanceMatrixResponseElement;
 
     public activityForm: FormGroup;
@@ -56,7 +59,10 @@ export class ActivityEditComponent implements OnInit, OnChanges {
         let activity = new Activity();
         activity.vehicle = values.vehicle;
         let date = moment(values.time);
+        activity.start = new GeoPoint(this.originMarker.getPosition().lat(), this.originMarker.getPosition().lng());
+        activity.end = new GeoPoint(this.destinationMarker.getPosition().lat(), this.destinationMarker.getPosition().lng());
         activity.time = moment(date.format('YYYY-MM-DD') + ' ' + values.timeString).toDate();
+        activity.distance = values.distance;
         console.log(activity.time);
         this.activityRef.ref.update({...activity});
     }
@@ -67,10 +73,11 @@ export class ActivityEditComponent implements OnInit, OnChanges {
     ngOnInit() {
 
         let map = new Map(document.getElementById('map'), {
-            center: {lat: -34.397, lng: 150.644},
+            center: {lat: 46.957, lng: 7.444},
             zoom: 8
         });
 
+        this.map = map;
         google.maps.event.addDomListener(window, 'resize', function () {
             var center = map.getCenter();
             google.maps.event.trigger(map, 'resize');
@@ -87,14 +94,14 @@ export class ActivityEditComponent implements OnInit, OnChanges {
 
         this.originMarker = new Marker({
             draggable: true,
-            position: {lat: -34.397, lng: 150.644},
+            position: {lat: 46.957, lng: 7.444},
             map: map,
             title: 'Startpunkt'
         });
 
         this.destinationMarker = new Marker({
             draggable: true,
-            position: {lat: -34.397, lng: 150.64},
+            position: {lat: 46.957, lng: 7.444},
             map: map,
             icon: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png',
             title: 'Endpunkt'
@@ -127,6 +134,9 @@ export class ActivityEditComponent implements OnInit, OnChanges {
         this.activityRef = snapshot;
         let activity = this.activityRef.data();
         activity.timeString = moment(activity.time).format('hh:mm');
+        this.originMarker.setPosition(new LatLng(activity.start.latitude, activity.start.longitude));
+        this.destinationMarker.setPosition(new LatLng(activity.end.latitude, activity.end.longitude));
+        this.map.setCenter(this.originMarker.getPosition());
         this.activityForm.patchValue(activity);
 
     }

@@ -1,8 +1,12 @@
-:host{
+:host {
 
-  .map{
+  .map {
     display: block;
     width: 100%;
     height: 500px;
+  }
+
+  .hidden {
+    visibility: hidden;
   }
 }
