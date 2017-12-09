@@ -4,12 +4,13 @@ import { Observable } from 'rxjs/Observable';
 import { Vehicle } from "../interfaces/vehicle";
 import {AngularFirestoreCollection} from "angularfire2/firestore/collection/collection";
 import {AuthService} from "../auth/auth.service";
+import { DocumentChangeAction } from 'angularfire2/firestore/interfaces';
 
 @Injectable()
 export class VehicleService {
 
-    public publicVehicles: Observable<Vehicle[]>;
-    public myVehicles: Observable<Vehicle[]>;
+    public publicVehicles: Observable<DocumentChangeAction[]>;
+    public myVehicles: Observable<DocumentChangeAction[]>;
     private publicVehicleCollection: AngularFirestoreCollection<Vehicle>;
     private myVehicleCollection: AngularFirestoreCollection<Vehicle>;
 

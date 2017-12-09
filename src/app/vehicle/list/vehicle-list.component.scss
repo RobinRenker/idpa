@@ -27,15 +27,13 @@
   }
 
   .new{
-    height: 112px;
-    background-color: red;
+    min-height: 40px;
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-
     mat-icon{
-
+      color: green; //material-design
     }
   }
 }

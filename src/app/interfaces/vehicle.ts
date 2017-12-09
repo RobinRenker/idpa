@@ -15,4 +15,21 @@ export class Vehicle{
         this.maxPassengers = maxPassengers;
         this.author = author;
     }
+
+    public calcEmission(distance:number, time?:number, velocity?:number){
+        //distance = Meter
+        //velocity = Meter/Sekunde
+        //time = in Sekunden
+
+        //entweder Zeit oder Geschwindigkeit ... egal welches
+
+        //Return in Gramm.
+        return 0;
+    }
+
+    public calcEnergy(distance:number, time?:number, velocity?:number){
+
+        //Return in Watt
+        return 0;
+    }
 }

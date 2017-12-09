@@ -16,7 +16,11 @@ export class VehicleEditComponent implements OnInit{
 
     ngOnInit(): void {
         this.route.params.subscribe((params) => {
-            console.log(params['id']);
+            if(params.id.toString().toLocaleLowerCase() == 'new'){
+                console.log("new");
+            } else {
+                console.log("id");
+            }
         });
     }
 }
