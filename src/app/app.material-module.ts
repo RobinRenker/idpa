@@ -26,7 +26,7 @@ import { DomSanitizer } from '@angular/platform-browser';
             MatMenuModule,
             MatListModule,
             MatInputModule,
-            MatDatepickerModule
+            MatDatepickerModule,
         ],
 
     exports:

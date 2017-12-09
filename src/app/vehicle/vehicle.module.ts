@@ -29,7 +29,6 @@ import {VehicleEditComponent} from "./edit/vehicle-edit.component";
         AppMaterialModule,
         ReactiveFormsModule,
         HttpClientModule
-
     ],
     providers: [
         AuthGuardService,

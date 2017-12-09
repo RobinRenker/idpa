@@ -1,1 +1,24 @@
-<h1>Edit</h1>
+<form [formGroup]="vehicleForm" novalidate *ngIf="(vehicle | async) || new">
+
+    <mat-form-field>
+        <input matInput type="string" placeholder="Name" formControlName="name" requied>
+        <span matSuffix></span>
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput type="number" placeholder="Passagiere" formControlName="maxPassengers" required>
+        <span matSuffix>Pers.</span>
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-select type="number" placeholder="Typ" formControlName="type" required>
+            <mat-option *ngFor="let type of types" [value]="type.value">
+                {{ type.viewValue }}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" (click)="saveVehicle()">Speichern</button>
+
+</form>
+
+<mat-spinner *ngIf="!(vehicle | async) && !new"></mat-spinner>

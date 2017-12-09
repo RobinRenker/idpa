@@ -8,6 +8,10 @@
   flex-direction: column;
   background-color: #FFF;
 
+  h2{
+    text-align: center;
+  }
+
   .spinner{
     display: flex;
     height: 100%;
@@ -19,6 +23,7 @@
     border-bottom: 1px solid rgba(0, 0, 0, 0.06);
     cursor: pointer;
     max-height: 112px;
+    min-height: 112px;
     @include transition(max-height, 0.5s, 0s, ease-in-out);
 
     &:hover{
