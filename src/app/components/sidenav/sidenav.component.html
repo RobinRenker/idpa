@@ -1,7 +1,7 @@
 <nav>
     <mat-card class="no-card" *ngIf="auth.isAuthenticated | async" tabindex="-1">
         <mat-card-header>
-            <img mat-card-avatar [src]="(auth.user | async)?.photoURL">
+            <img mat-card-avatar [src]="(auth.user | async)?.photoURL" onError="this.src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADgAAAA4CAYAAACohjseAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAZiS0dEAAAAAAAA+UO7fwAAAAlwSFlzAAAASAAAAEgARslrPgAAAkJJREFUaN7t2bvK4kAYBuA360YlimA0hVgKgoIaC0GJh0YrK4tUehtekVZp7MXGIr0YQRH0BoIExEOMRbZYXP49+xsTGZm3DPPNzMMkwyRh+v2+jTfOl1dPgAIpkALfOxRIeiiQ9FAg6aFA0vPV7QHC4TAkSUImk0E8HgcA6LqO1WoFVVVxOBzIBebzeciyjEAg8NP1ZDKJZDKJarUKRVGgaZprc3DtFs3n8+h2u7/hPiYQCKDX6yGXy5EFDIfDkGUZDMP8ty3DMJBlGaFQiBygJEn/XLlfEwwGIUkSOcBsNvvpmkwmQw4wFot9uua2wxIBtO3Pf8d6pOZlwN1u50nNy4DL5dKTmpcBVVXF5XK5u71pmlBVlRzg4XCAoih3PVe2bUNRFByPR3KAAKBpGobDIUzT/Gsb0zQxGAywWCzcmoa7Z1FN07Ddbn8ctgVBAPD9sL1cLqGqqmsrdwtD/00QnrcHuvoMRiIRCIKAaDQKv98Pv98PALAsC5ZlwTAM6LqO/X5PBpDjOORyOaTTaaRSKXAcd1fd6XTCZrPBer3GfD7H+Xx+2pyessnwPI9ms4lCoQCWZR31db1eMZvNMJlMYBiGY6CjFWQYBo1GA61WyzHsFpZlUSqVIIoixuMxptPp64CdTgflcvkpsD9B2+02eJ7HaDR6uJ+Hd9Fisega7mMqlQpEUfQeWKvVXMfdUq/XvQcmEgnPgE7Gehjo8/k8AzoZ6+1PMm8PpG8TpIcCSQ8Fkh4KJD0USHookPRQIOn5BmxSqu5sstveAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDE3LTEyLTExVDA2OjU4OjE0KzAwOjAw3T0RDAAAACV0RVh0ZGF0ZTptb2RpZnkAMjAxNy0xMi0xMVQwNjo1ODoxNCswMDowMKxgqbAAAAAodEVYdHN2ZzpiYXNlLXVyaQBmaWxlOi8vL3RtcC9tYWdpY2stc1g4MlpSYmzwP2lEAAAAAElFTkSuQmCC'">
             <mat-card-title>Hallo!</mat-card-title>
             <mat-card-subtitle>{{(auth.user | async)?.displayName}}</mat-card-subtitle>
         </mat-card-header>
