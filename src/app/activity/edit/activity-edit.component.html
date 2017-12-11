@@ -20,6 +20,7 @@
 
     <mat-form-field>
         <input matInput type="text" placeholder="Startpunkt" formControlName="startString" [matAutocomplete]="startComplete">
+        <button mat-icon-button matSuffix  (click)="useCurrentLocation()"> <mat-icon svgIcon="crosshairs-gps"></mat-icon></button>
     </mat-form-field>
 
     <mat-autocomplete #startComplete="matAutocomplete">

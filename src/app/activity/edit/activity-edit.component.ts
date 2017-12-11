@@ -54,6 +54,30 @@ export class ActivityEditComponent implements OnInit {
 
     }
 
+    public useCurrentLocation(){
+        console.log("gagel");
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition((res => {
+                console.log(res);
+                let location = new LatLng(res.coords.latitude, res.coords.longitude);
+                this.originMarker.setPosition(location);
+                this.geocoder.geocode({location: location}, (results, status) => {
+                    console.log(results);
+                    if (status == GeocoderStatus.OK) {
+                        let address = results[0].formatted_address;
+
+                        this.activityForm.patchValue({startString:address});
+
+
+                    } else {
+                        console.log(status);
+                    }
+
+                });
+            }));
+        }
+    }
+
     public calc() {
         this.dist.getDistance(this.originMarker.getPosition(), this.destinationMarker.getPosition()).then((res) => {
             console.log(res);
@@ -139,7 +163,7 @@ export class ActivityEditComponent implements OnInit {
     public searchLocation(address: string, isStart: boolean): Promise<GeocoderResult[]> {
 
         return new Promise((resolve, reject) => {
-            this.geocoder.geocode({'address': address, componentRestrictions: {}}, (results, status) => {
+            this.geocoder.geocode({'address': address, componentRestrictions: {country:"CH"}}, (results, status) => {
 
                 if (status == GeocoderStatus.OK) {
                     let position = results[0].geometry.location;
