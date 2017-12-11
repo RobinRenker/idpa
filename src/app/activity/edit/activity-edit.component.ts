@@ -5,8 +5,10 @@ import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Activity } from '../../interfaces/activity';
 import { ActivityService } from '../../providers/activity.service';
-import {default as firebase} from 'firebase';
+import { default as firebase } from 'firebase';
 import * as moment from 'moment';
+import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/operator/delay';
 import Marker = google.maps.Marker;
 import Map = google.maps.Map;
 import DistanceMatrixResponseElement = google.maps.DistanceMatrixResponseElement;
@@ -14,6 +16,10 @@ import DocumentSnapshot = firebase.firestore.DocumentSnapshot;
 import DocumentReference = firebase.firestore.DocumentReference;
 import GeoPoint = firebase.firestore.GeoPoint;
 import LatLng = google.maps.LatLng;
+import Geocoder = google.maps.Geocoder;
+import GeocoderStatus = google.maps.GeocoderStatus;
+import GeocoderResult = google.maps.GeocoderResult;
+import { Subject } from 'rxjs/Subject';
 
 @Component({
     selector: 'activity-edit',
@@ -23,7 +29,7 @@ import LatLng = google.maps.LatLng;
 /**
  *
  */
-export class ActivityEditComponent implements OnInit, OnChanges {
+export class ActivityEditComponent implements OnInit {
 
     constructor(public auth: AuthService, private route: ActivatedRoute, public dist: DistanceService, public activityService: ActivityService, public fb: FormBuilder) {
 
@@ -31,10 +37,20 @@ export class ActivityEditComponent implements OnInit, OnChanges {
             time: ['', Validators.required],
             timeString: ['', Validators.required],
             start: ['', Validators.required],
+            startString: ['Bern', Validators.required],
             end: ['', Validators.required],
+            endString: ['Zürich', Validators.required],
             distance: [0, Validators.required],
+            passengers: [1, Validators.required],
             vehicle: ['', Validators.required]
         });
+
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition((res => {
+                console.log(res);
+                //use current location if needed
+            }));
+        }
 
     }
 
@@ -42,39 +58,28 @@ export class ActivityEditComponent implements OnInit, OnChanges {
         this.dist.getDistance(this.originMarker.getPosition(), this.destinationMarker.getPosition()).then((res) => {
             console.log(res);
             this.distance = res;
+            this.activityForm.patchValue({distance:Math.round(res.distance.value / 100)/10})
         });
     }
 
     public originMarker: Marker;
+    public originOptions: GeocoderResult[] = [];
     public destinationMarker: Marker;
+    public destinationOptions: GeocoderResult[] = [];
     public map: Map;
+    public geocoder: Geocoder;
     public distance: DistanceMatrixResponseElement;
 
     public activityForm: FormGroup;
     public activityRef: DocumentSnapshot;
 
-    public saveActivity() {
-
-        let values = this.activityForm.value;
-        let activity = new Activity();
-        activity.vehicle = values.vehicle;
-        let date = moment(values.time);
-        activity.start = new GeoPoint(this.originMarker.getPosition().lat(), this.originMarker.getPosition().lng());
-        activity.end = new GeoPoint(this.destinationMarker.getPosition().lat(), this.destinationMarker.getPosition().lng());
-        activity.time = moment(date.format('YYYY-MM-DD') + ' ' + values.timeString).toDate();
-        activity.distance = values.distance;
-        console.log(activity.time);
-        this.activityRef.ref.update({...activity});
-    }
-
-    ngOnChanges(changes: SimpleChanges): void {
-    }
-
     ngOnInit() {
 
         let map = new Map(document.getElementById('map'), {
             center: {lat: 46.957, lng: 7.444},
-            zoom: 8
+            zoom: 8,
+            disableDefaultUI: true,
+
         });
 
         this.map = map;
@@ -93,19 +98,19 @@ export class ActivityEditComponent implements OnInit, OnChanges {
         });
 
         this.originMarker = new Marker({
-            draggable: true,
             position: {lat: 46.957, lng: 7.444},
             map: map,
             title: 'Startpunkt'
         });
 
         this.destinationMarker = new Marker({
-            draggable: true,
-            position: {lat: 46.957, lng: 7.444},
+            position: {lat: 47.376, lng: 8.541},
             map: map,
             icon: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png',
             title: 'Endpunkt'
         });
+
+        this.geocoder = new Geocoder();
 
         this.route.params.subscribe((params) => {
             console.log(params['id']);
@@ -128,6 +133,31 @@ export class ActivityEditComponent implements OnInit, OnChanges {
                 });
             }
         });
+
+    }
+
+    public searchLocation(address: string, isStart: boolean): Promise<GeocoderResult[]> {
+
+        return new Promise((resolve, reject) => {
+            this.geocoder.geocode({'address': address, componentRestrictions: {}}, (results, status) => {
+
+                if (status == GeocoderStatus.OK) {
+                    let position = results[0].geometry.location;
+                    this.map.setCenter(position);
+                    this.map.setZoom(15);
+                    if (isStart) {
+                        this.originMarker.setPosition(position);
+                    } else {
+                        this.destinationMarker.setPosition(position);
+                    }
+                    this.calc();
+
+                } else {
+                    console.log(status);
+                }
+                resolve(results);
+            });
+        });
     }
 
     public getActivity(snapshot: DocumentSnapshot) {
@@ -137,8 +167,46 @@ export class ActivityEditComponent implements OnInit, OnChanges {
         this.originMarker.setPosition(new LatLng(activity.start.latitude, activity.start.longitude));
         this.destinationMarker.setPosition(new LatLng(activity.end.latitude, activity.end.longitude));
         this.map.setCenter(this.originMarker.getPosition());
-        this.activityForm.patchValue(activity);
+        this.map.setZoom(8);
+        this.activityForm.patchValue(activity, {emitEvent: false});
 
+        this.activityForm.get('startString').valueChanges.debounceTime(1000).subscribe((value => {
+            console.log(value);
+
+            this.searchLocation(value, true).then((res) => {
+                console.log(res);
+                return this.originOptions = res;
+            })
+
+        }));
+
+        this.activityForm.get('endString').valueChanges.debounceTime(1000).subscribe((value => {
+            console.log(value);
+            console.log(activity.endString);
+
+            this.searchLocation(value, false).then((res) => {
+                console.log(res);
+                return this.destinationOptions = res;
+            })
+
+        }));
+
+    }
+
+    public saveActivity() {
+
+        let values = this.activityForm.value;
+        let activity = new Activity();
+        activity.vehicle = values.vehicle;
+        let date = moment(values.time);
+        activity.start = new GeoPoint(this.originMarker.getPosition().lat(), this.originMarker.getPosition().lng());
+        activity.startString = values.startString;
+        activity.end = new GeoPoint(this.destinationMarker.getPosition().lat(), this.destinationMarker.getPosition().lng());
+        activity.endString = values.endString;
+        activity.time = moment(date.format('YYYY-MM-DD') + ' ' + values.timeString).toDate();
+        activity.distance = values.distance;
+        activity.passengers = values.passengers;
+        this.activityRef.ref.update({...activity});
     }
 
 }

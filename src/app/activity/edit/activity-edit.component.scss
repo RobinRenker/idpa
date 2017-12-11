@@ -1,4 +1,10 @@
 :host {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 
   .map {
     display: block;
@@ -8,5 +14,14 @@
 
   .hidden {
     visibility: hidden;
+  }
+
+  form{
+    width: 80%;
+    height: 80%;
+    max-width: 700px;
+    mat-form-field{
+      width: 100%;
+    }
   }
 }
