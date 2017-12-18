@@ -1,6 +1,6 @@
 <h2>Meine Aktivitäten</h2>
 <mat-nav-list>
-    <a mat-list-item *ngFor="let activity of activityService.activities | async" href="activities/edit/{{activity.payload.doc.id}}">
+    <a mat-list-item *ngFor="let activity of activityService.activities | async" [routerLink]="['/activities/edit', activity.payload.doc.id]">
         <mat-icon matListIcon svgIcon="train"></mat-icon>
         <h3 matLine>  {{activity.payload.doc.data().startString}}&nbsp; <mat-icon svgIcon="ray-start-arrow"></mat-icon> &nbsp;{{activity.payload.doc.data().endString}} </h3>
         <p matLine>
