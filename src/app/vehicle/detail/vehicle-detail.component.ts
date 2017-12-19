@@ -1,6 +1,7 @@
 import { Component, Input, HostBinding, OnChanges } from '@angular/core';
 import { VehicleService } from "../../providers/vehicle.service";
 import { Vehicle } from "../../interfaces/vehicle";
+import { Types } from "../../interfaces/type";
 
 @Component({
     selector: 'vehicle-detail',
@@ -22,6 +23,16 @@ export class VehicleDetailComponent implements OnChanges{
         this.vehicleService.getVehicle(this.id).subscribe((val) => {
             this.vehicle = val;
         });
+    }
+
+    public getIcon(type:number): string{
+        let ret: string = "";
+        for(var i = 0; i < Types.length; i++){
+            if (Types[i].value == type){
+                ret = Types[i].icon;
+            }
+        }
+        return ret;
     }
 }
 

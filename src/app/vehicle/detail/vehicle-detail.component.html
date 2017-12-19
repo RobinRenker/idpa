@@ -10,7 +10,7 @@
 </div>
 <div class="line" (click)="expanded = !expanded">
     <h1>{{vehicle.name}}</h1>
-    <mat-icon aria-label="Edit" svgIcon="airplane"></mat-icon>
+    <mat-icon aria-label="Edit" [svgIcon]="getIcon(vehicle.type)"></mat-icon>
 </div>
 <div class="spacer"></div>
 <h2>Anzahl Mitfahrende: {{vehicle.maxPassengers}}</h2>

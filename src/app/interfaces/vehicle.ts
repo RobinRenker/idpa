@@ -7,13 +7,9 @@ export class Vehicle{
     public author: string = "";
     public type: number = 1; //Car
 
-    constructor(type?:number,name?:string,emissions?:number,usage?:number,maxPassengers?:number,author?:string){
+    constructor(name:string,type:number){
         this.type = type;
         this.name = name;
-        this.emissions = emissions;
-        this.usage = usage;
-        this.maxPassengers = maxPassengers;
-        this.author = author;
     }
 
     public calcEmission(distance:number, time?:number, velocity?:number){

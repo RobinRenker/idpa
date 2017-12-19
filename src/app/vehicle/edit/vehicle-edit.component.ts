@@ -60,6 +60,9 @@ export class VehicleEditComponent implements OnInit{
                 });*/
             } else {
                 this.vehicle = this.vehicleService.getVehicle(params.id);
+                this.vehicle.subscribe((value) => {
+                    this.vehicleForm.patchValue(value, {emitEvent: false});
+                });
             }
         });
     }
