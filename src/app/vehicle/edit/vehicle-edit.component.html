@@ -17,6 +17,19 @@
         </mat-select>
     </mat-form-field>
 
+
+    <mat-form-field>
+        <input matInput type="number" placeholder="CO&#8322;-Ausstoss" formControlName="emissions" required>
+        <span matSuffix>g/km</span>
+    </mat-form-field>
+
+
+    <mat-form-field>
+        <input matInput type="number" placeholder="Energieverbrauch" formControlName="usage" required>
+        <span matSuffix>kWh/km</span>
+    </mat-form-field>
+
+
     <button mat-raised-button color="primary" (click)="saveVehicle()">Speichern</button>
 
 </form>

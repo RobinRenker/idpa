@@ -38,6 +38,13 @@ export class VehicleService {
         });
     }
 
+    public update(id:string,v:Vehicle):Promise<DocumentReference>{
+        return this.auth.user.first().toPromise().then((user: UserInfo) => {
+            v.author = user.uid;
+            this.db.doc('vehicles/'+id).set({...v});
+        });
+    }
+
     public delete(id:string):void {
         this.publicVehicleCollection.doc(id).delete().then(() => {
             console.log(id + " deleted");
