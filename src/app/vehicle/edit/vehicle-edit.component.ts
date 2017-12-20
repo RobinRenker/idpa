@@ -52,9 +52,7 @@ export class VehicleEditComponent implements OnInit{
                 });
             });
         } else {
-            this.vehicleService.update(this.id,v).then((ref: DocumentReference)=> {
-                this.router.navigate(['/vehicle/edit/'+this.id]);
-            });
+            this.vehicleService.update(this.id,v);
         }
     }
 

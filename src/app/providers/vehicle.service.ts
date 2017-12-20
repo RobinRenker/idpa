@@ -38,8 +38,8 @@ export class VehicleService {
         });
     }
 
-    public update(id:string,v:Vehicle):Promise<DocumentReference>{
-        return this.auth.user.first().toPromise().then((user: UserInfo) => {
+    public update(id:string,v:Vehicle):void{
+        this.auth.user.first().toPromise().then((user: UserInfo) => {
             v.author = user.uid;
             this.db.doc('vehicles/'+id).set({...v});
         });
