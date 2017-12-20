@@ -38,9 +38,7 @@ export class VehicleEditComponent implements OnInit{
 
 
         let val = this.vehicleForm.value;
-        let v: Vehicle = new Vehicle();
-        v.name = val.name;
-        v.type = val.type;
+        let v: Vehicle = new Vehicle(val.name,val.type);
         v.maxPassengers = val.maxPassengers;
         this.vehicleService.create(v).then((ref: DocumentReference) => {
             ref.onSnapshot((ref) => {

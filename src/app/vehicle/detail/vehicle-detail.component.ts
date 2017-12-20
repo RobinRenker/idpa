@@ -14,7 +14,7 @@ export class VehicleDetailComponent implements OnChanges{
     @Input() id: string;
     @HostBinding('class.expanded') expanded: boolean = false;
 
-    public vehicle: Vehicle = new Vehicle();
+    public vehicle: Vehicle = new Vehicle("Loading",1);
 
     constructor(public vehicleService: VehicleService){
     }
