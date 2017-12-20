@@ -7,6 +7,12 @@
   overflow-y: scroll;
   background-color: #FFF;
 
+  .floatingbutton{
+    position: fixed;
+    right: $padding*4;
+    bottom: $padding*4;
+  }
+
   h2{
     text-align: center;
   }
@@ -27,17 +33,6 @@
 
     &:hover{
       background-color: #fafafa;
-    }
-  }
-
-  .new{
-    min-height: 40px;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    mat-icon{
-      color: green; //material-design
     }
   }
 }
