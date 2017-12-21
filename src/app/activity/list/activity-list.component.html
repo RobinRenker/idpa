@@ -1,4 +1,5 @@
 <h2>Meine Aktivitäten</h2>
+<mat-spinner class="center" *ngIf="!(activityService.activities | async); "></mat-spinner>
 <mat-nav-list>
     <a mat-list-item *ngFor="let activity of activityService.activities | async" [routerLink]="['/activities/edit', activity.payload.doc.id]">
         <mat-icon matListIcon svgIcon="train"></mat-icon>

@@ -31,6 +31,9 @@ import { Subject } from 'rxjs/Subject';
  */
 export class ActivityEditComponent implements OnInit {
 
+
+    public showPosition = false;
+
     constructor(public auth: AuthService, private route: ActivatedRoute, public dist: DistanceService, public activityService: ActivityService, public fb: FormBuilder) {
 
         this.activityForm = this.fb.group({
@@ -47,26 +50,37 @@ export class ActivityEditComponent implements OnInit {
 
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition((res => {
-                console.log(res);
-                //use current location if needed
+                this.showPosition = true;
             }));
         }
 
     }
 
-    public useCurrentLocation(){
-        console.log("gagel");
+    public useCurrentLocation(start:boolean){
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition((res => {
                 console.log(res);
                 let location = new LatLng(res.coords.latitude, res.coords.longitude);
-                this.originMarker.setPosition(location);
+                if(start){
+                    this.originMarker.setPosition(location);
+                }
+                else {
+                    this.destinationMarker.setPosition(location);
+                }
+
                 this.geocoder.geocode({location: location}, (results, status) => {
                     console.log(results);
                     if (status == GeocoderStatus.OK) {
                         let address = results[0].formatted_address;
 
-                        this.activityForm.patchValue({startString:address});
+
+
+                        if(start){
+                            this.activityForm.patchValue({startString:address});
+                        }
+                        else {
+                            this.activityForm.patchValue({endString:address});
+                        }
 
 
                     } else {
