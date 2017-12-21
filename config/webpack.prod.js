@@ -17,6 +17,8 @@ const NormalModuleReplacementPlugin = require('webpack/lib/NormalModuleReplaceme
 const ProvidePlugin = require('webpack/lib/ProvidePlugin');
 const UglifyJsPlugin = require('webpack/lib/optimize/UglifyJsPlugin');
 const OptimizeJsPlugin = require('optimize-js-plugin');
+const OfflinePlugin = require('offline-plugin');
+
 
 /**
  * Webpack Constants
@@ -312,6 +314,18 @@ module.exports = function (env) {
        *
        * See: https://github.com/th0r/webpack-bundle-analyzer
        */
+
+
+        new OfflinePlugin({
+            cacheMaps: [
+                {
+                    match: function(requestUrl) {
+                        return new URL('/', location);
+                    },
+                    requestTypes: ['navigate']
+                }
+            ]
+        })
 
     ],
 

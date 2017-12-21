@@ -49,7 +49,7 @@ import { ActivityService } from './providers/activity.service';
         CommonModule,
         BrowserAnimationsModule,
         AngularFireModule.initializeApp(environment.firebase),
-        AngularFirestoreModule,
+        AngularFirestoreModule.enablePersistence(),
         AngularFireAuthModule,
         AppMaterialModule,
         HttpClientModule,
