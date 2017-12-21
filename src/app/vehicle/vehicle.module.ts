@@ -34,6 +34,9 @@ import {VehicleEditComponent} from "./edit/vehicle-edit.component";
         AuthGuardService,
         AuthService
     ],
+    exports: [
+        VehicleDetailComponent
+    ]
 })
 export class VehicleModule {
 }

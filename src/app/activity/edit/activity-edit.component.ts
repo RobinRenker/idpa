@@ -1,7 +1,7 @@
 import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { AuthService } from '../../auth/auth.service';
 import { DistanceService } from '../../providers/distance.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Activity } from '../../interfaces/activity';
 import { ActivityService } from '../../providers/activity.service';
@@ -20,6 +20,7 @@ import Geocoder = google.maps.Geocoder;
 import GeocoderStatus = google.maps.GeocoderStatus;
 import GeocoderResult = google.maps.GeocoderResult;
 import { Subject } from 'rxjs/Subject';
+import { VehicleService } from '../../providers/vehicle.service';
 
 @Component({
     selector: 'activity-edit',
@@ -31,10 +32,9 @@ import { Subject } from 'rxjs/Subject';
  */
 export class ActivityEditComponent implements OnInit {
 
-
     public showPosition = false;
 
-    constructor(public auth: AuthService, private route: ActivatedRoute, public dist: DistanceService, public activityService: ActivityService, public fb: FormBuilder) {
+    constructor(public auth: AuthService, private route: ActivatedRoute, public dist: DistanceService, public activityService: ActivityService, public fb: FormBuilder, public vehicleService: VehicleService, public router: Router) {
 
         this.activityForm = this.fb.group({
             time: ['', Validators.required],
@@ -48,20 +48,23 @@ export class ActivityEditComponent implements OnInit {
             vehicle: ['', Validators.required]
         });
 
+        //check if device Location can be used
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition((res => {
                 this.showPosition = true;
             }));
         }
 
+
+
     }
 
-    public useCurrentLocation(start:boolean){
+    public useCurrentLocation(start: boolean) {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition((res => {
                 console.log(res);
                 let location = new LatLng(res.coords.latitude, res.coords.longitude);
-                if(start){
+                if (start) {
                     this.originMarker.setPosition(location);
                 }
                 else {
@@ -73,15 +76,12 @@ export class ActivityEditComponent implements OnInit {
                     if (status == GeocoderStatus.OK) {
                         let address = results[0].formatted_address;
 
-
-
-                        if(start){
-                            this.activityForm.patchValue({startString:address});
+                        if (start) {
+                            this.activityForm.patchValue({startString: address});
                         }
                         else {
-                            this.activityForm.patchValue({endString:address});
+                            this.activityForm.patchValue({endString: address});
                         }
-
 
                     } else {
                         console.log(status);
@@ -96,7 +96,7 @@ export class ActivityEditComponent implements OnInit {
         this.dist.getDistance(this.originMarker.getPosition(), this.destinationMarker.getPosition()).then((res) => {
             console.log(res);
             this.distance = res;
-            this.activityForm.patchValue({distance:Math.round(res.distance.value / 100)/10})
+            this.activityForm.patchValue({distance: Math.round(res.distance.value / 100) / 10})
         });
     }
 
@@ -166,6 +166,7 @@ export class ActivityEditComponent implements OnInit {
                 this.activityService.add(new Activity()).then((ref: DocumentReference) => {
                     ref.onSnapshot((ref) => {
                         this.getActivity(ref);
+                        this.router.navigate(["/activities/edit",ref.id]);
                     })
 
                 });
@@ -177,7 +178,7 @@ export class ActivityEditComponent implements OnInit {
     public searchLocation(address: string, isStart: boolean): Promise<GeocoderResult[]> {
 
         return new Promise((resolve, reject) => {
-            this.geocoder.geocode({'address': address, componentRestrictions: {country:"CH"}}, (results, status) => {
+            this.geocoder.geocode({'address': address, componentRestrictions: {country: 'CH'}}, (results, status) => {
 
                 if (status == GeocoderStatus.OK) {
                     let position = results[0].geometry.location;

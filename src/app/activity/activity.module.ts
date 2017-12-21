@@ -14,6 +14,7 @@ import { DistanceService } from '../providers/distance.service';
 import { ActivityRoutingModule } from './activity-routing.module';
 import { ActivityEditComponent } from './edit/activity-edit.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { VehicleModule } from '../vehicle/vehicle.module';
 
 @NgModule({
     declarations: [
@@ -28,7 +29,8 @@ import { ReactiveFormsModule } from '@angular/forms';
         AngularFirestoreModule,
         AppMaterialModule,
         HttpClientModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        VehicleModule
 
     ],
     providers: [

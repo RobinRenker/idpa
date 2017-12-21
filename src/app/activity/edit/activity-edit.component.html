@@ -51,9 +51,24 @@
         <mat-datepicker [touchUi]="true" #picker></mat-datepicker>
     </mat-form-field>
 
+
     <mat-form-field>
-        <input matInput type="text" placeholder="Fahrzeug" formControlName="vehicle" required>
+        <mat-select placeholder="Fahrzeug" formControlName="vehicle" required>
+            <mat-optgroup label="Meine Fahrzeuge">
+                <mat-option *ngFor="let vehicle of vehicleService.myVehicles | async" [value]="vehicle.payload.doc.id">
+                    {{ vehicle.payload.doc.data().name}}
+                </mat-option>
+            </mat-optgroup>
+
+            <mat-optgroup label="Standardfahrzeuge">
+                <mat-option *ngFor="let vehicle of vehicleService.publicVehicles | async" [value]="vehicle.payload.doc.id">
+                    {{ vehicle.payload.doc.data().name}}
+                </mat-option>
+            </mat-optgroup>
+        </mat-select>
     </mat-form-field>
+
+    <vehicle-detail  [id]="activityForm.value.vehicle"></vehicle-detail>
 
     <mat-form-field>
         <input matInput type="number" placeholder="Distanz" formControlName="distance" required> <span matSuffix>km</span>
