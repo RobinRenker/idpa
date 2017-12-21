@@ -3,7 +3,7 @@
 <div class="spinner" *ngIf="!(vehicleService.myVehicles | async)">
     <mat-spinner></mat-spinner>
 </div>
-<h2>Alle veröffentlichten Fahrzeuge</h2>
+<h2>Standardfahrzeuge</h2>
 <vehicle-detail *ngFor="let vehicle of vehicleService.publicVehicles | async" [id]="vehicle.payload.doc.id"></vehicle-detail>
 <div class="spinner" *ngIf="!(vehicleService.publicVehicles | async)">
     <mat-spinner></mat-spinner>
