@@ -166,7 +166,7 @@ export class ActivityEditComponent implements OnInit {
                 this.activityService.add(new Activity()).then((ref: DocumentReference) => {
                     ref.onSnapshot((ref) => {
                         this.getActivity(ref);
-                        this.router.navigate(["/activities/edit",ref.id]);
+                        //this.router.navigate(["/activities/edit",ref.id]);
                     })
 
                 });

@@ -6,7 +6,7 @@ export class Activity {
 
     constructor() {
         this.time = new Date();
-        this.vehicle = 'ep9RkMoIFfxOHclzG6Qm';
+        this.vehicle = '';
         this.start = new GeoPoint(46.957, 7.444);
         this.end = new GeoPoint(47.376, 8.541);
 
