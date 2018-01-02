@@ -4,33 +4,75 @@
         <input matInput type="string" placeholder="Name" formControlName="name" requied>
         <span matSuffix></span>
     </mat-form-field>
-    <mat-form-field>
-        <input matInput type="number" placeholder="Passagiere" formControlName="maxPassengers" required>
-        <span matSuffix>Pers.</span>
-    </mat-form-field>
 
     <mat-form-field>
-        <mat-select type="number" placeholder="Typ" formControlName="type" required>
+        <mat-select type="number" placeholder="Typ" formControlName="type" required (change)="changeType()">
             <mat-option *ngFor="let type of types" [value]="type.value">
                 {{ type.viewValue }}
             </mat-option>
         </mat-select>
     </mat-form-field>
 
+    <mat-form-field *ngIf="vehicleForm.value.weight != undefined">
+        <input matInput type="number" placeholder="Gewicht" formControlName="weight" requied>
+        <span matSuffix>kg</span>
+    </mat-form-field>
 
-    <mat-form-field>
-        <input matInput type="number" placeholder="CO&#8322;-Ausstoss" formControlName="emissions" required>
-        <span matSuffix>g/km</span>
+    <mat-form-field *ngIf="vehicleForm.value.a != undefined">
+        <input matInput type="number" placeholder="Frontal Fläche" formControlName="a" requied>
+        <span matSuffix>m²</span>
+    </mat-form-field>
+
+    <mat-form-field *ngIf="vehicleForm.value.maxPassengers != undefined">
+        <input matInput type="number" placeholder="Maximale Passagiere" formControlName="maxPassengers" requied>
+        <span matSuffix>Pers.</span>
     </mat-form-field>
 
 
-    <mat-form-field>
-        <input matInput type="number" placeholder="Energieverbrauch" formControlName="usage" required>
-        <span matSuffix>kWh/km</span>
-    </mat-form-field>
+    <mat-accordion *ngIf="vehicleForm.value.type != undefined">
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>Erweitert</mat-panel-title>
+                <!--<mat-panel-description>
+                    Type your name and age
+                </mat-panel-description>-->
+            </mat-expansion-panel-header>
 
+            <mat-form-field *ngIf="vehicleForm.value.cw != undefined">
+                <input matInput type="number" placeholder="Aerodynamik" formControlName="cw" requied>
+                <span matSuffix></span>
+            </mat-form-field>
+
+            <mat-form-field *ngIf="vehicleForm.value.roll != undefined">
+                <input matInput type="number" placeholder="Rollwiederstand" formControlName="roll" requied>
+                <span matSuffix></span>
+            </mat-form-field>
+
+            <mat-form-field *ngIf="vehicleForm.value.airdensity != undefined">
+                <input matInput type="number" placeholder="Luftdichte" formControlName="airdensity" requied>
+                <span matSuffix>kg/m³</span>
+            </mat-form-field>
+
+            <mat-form-field *ngIf="vehicleForm.value.g != undefined">
+                <input matInput type="number" placeholder="Gravitation" formControlName="g" requied>
+                <span matSuffix>m/s²</span>
+            </mat-form-field>
+
+        </mat-expansion-panel>
+    </mat-accordion>
+
+    <!--<mat-tab-group *ngIf="vehicleForm.value.type != undefined">
+        <mat-tab label="Normal">
+
+        </mat-tab>
+        <mat-tab label="Erweitert">
+
+        </mat-tab>
+    </mat-tab-group>-->
 
     <button mat-raised-button color="primary" (click)="saveVehicle()">Speichern</button>
+
+    <div class="spacer"></div>
 
 </form>
 

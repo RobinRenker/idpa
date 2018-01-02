@@ -27,20 +27,54 @@ export class VehicleEditComponent implements OnInit{
 
         this.vehicleForm = this.fb.group({
             name: ['', Validators.required],
-            maxPassengers: [0, Validators.required],
-            type: [0, Validators.required],
-            emissions: [0, Validators.required],
-            usage: [0, Validators.required]
+            type: [undefined, Validators.required],
+            //emissions: [0, Validators.required],
+            //usage: [0, Validators.required]
+            weight: [undefined, Validators.required],
+            roll: [undefined, Validators.required],
+            cw: [undefined, Validators.required],
+            a: [undefined, Validators.required],
+            g: [undefined, Validators.required],
+            airdensity: [undefined, Validators.required],
+            maxPassengers: [undefined, Validators.required],
         });
+    }
+
+    public changeType(): void {
+        let val:any = this.vehicleForm.value;
+        let vehicle:Vehicle;
+        for(let i = 0; i < Types.length; i++){
+            if(Types[i].value == val.type){
+                vehicle = Types[i].vehicle;
+            }
+        }
+
+
+        /*this.vehicleForm = this.fb.group({
+            name: [val.name, Validators.required],
+            type: [vehicle.type, Validators.required],
+            weight: [vehicle.weight, Validators.required],
+            roll: [vehicle.roll, Validators.required],
+            cw: [vehicle.cw, Validators.required],
+            a: [vehicle.a, Validators.required],
+            g: [vehicle.g, Validators.required],
+            airdensity: [vehicle.airdensity, Validators.required],
+            maxPassengers: [vehicle.maxPassengers, Validators.required],
+        });*/
+
+        vehicle.name = val.name;
+        this.vehicleForm.patchValue(vehicle, {emitEvent:false});
     }
 
     public saveVehicle(): void {
 
-        let val = this.vehicleForm.value;
+        /*let val = this.vehicleForm.value;
         let v: Vehicle = new Vehicle(val.name,val.type);
         v.maxPassengers = val.maxPassengers;
         v.emissions = val.emissions;
-        v.usage = val.usage;
+        v.usage = val.usage;*/
+
+        let v:Vehicle = this.vehicleForm.getRawValue();
 
         if(this.new){
             this.vehicle = undefined;

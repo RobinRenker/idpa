@@ -13,4 +13,23 @@
       width: 100%;
     }
   }
+  .line{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    mat-slider{
+      flex-grow: 1;
+    }
+    p{
+      margin: 0 10px;
+    }
+  }
+  button{
+    margin-top: 1.25rem;
+  }
+  .spacer{
+    width: 100%;
+    height: 75px;
+  }
 }

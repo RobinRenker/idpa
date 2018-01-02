@@ -1,6 +1,7 @@
 import {NgModule} from '@angular/core';
 import {AppMaterialModule} from '../app.material-module';
 import {CommonModule} from '@angular/common';
+import {FormsModule} from '@angular/forms';
 
 import {AngularFirestoreModule} from 'angularfire2/firestore';
 import {HttpClientModule} from '@angular/common/http';
@@ -10,14 +11,12 @@ import {ReactiveFormsModule} from '@angular/forms';
 
 import {VehicleRoutingModule} from "./vehicle-routing.module";
 
-import {VehicleCreateComponent} from './create/vehicle-create.component';
 import {VehicleListComponent} from "./list/vehicle-list.component";
 import {VehicleDetailComponent} from "./detail/vehicle-detail.component";
 import {VehicleEditComponent} from "./edit/vehicle-edit.component";
 
 @NgModule({
     declarations: [
-        VehicleCreateComponent,
         VehicleListComponent,
         VehicleDetailComponent,
         VehicleEditComponent
@@ -28,7 +27,8 @@ import {VehicleEditComponent} from "./edit/vehicle-edit.component";
         AngularFirestoreModule,
         AppMaterialModule,
         ReactiveFormsModule,
-        HttpClientModule
+        HttpClientModule,
+        FormsModule
     ],
     providers: [
         AuthGuardService,
