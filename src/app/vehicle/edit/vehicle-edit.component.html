@@ -13,23 +13,23 @@
         </mat-select>
     </mat-form-field>
 
-    <mat-form-field *ngIf="vehicleForm.value.weight != undefined">
+    <mat-form-field *ngIf="vehicleForm.value.weight != null">
         <input matInput type="number" placeholder="Gewicht" formControlName="weight" requied>
         <span matSuffix>kg</span>
     </mat-form-field>
 
-    <mat-form-field *ngIf="vehicleForm.value.a != undefined">
+    <mat-form-field *ngIf="vehicleForm.value.a != null">
         <input matInput type="number" placeholder="Frontal Fläche" formControlName="a" requied>
         <span matSuffix>m²</span>
     </mat-form-field>
 
-    <mat-form-field *ngIf="vehicleForm.value.maxPassengers != undefined">
+    <mat-form-field *ngIf="vehicleForm.value.maxPassengers != null">
         <input matInput type="number" placeholder="Maximale Passagiere" formControlName="maxPassengers" requied>
         <span matSuffix>Pers.</span>
     </mat-form-field>
 
 
-    <mat-accordion *ngIf="vehicleForm.value.type != undefined">
+    <mat-accordion *ngIf="vehicleForm.value.type != null">
         <mat-expansion-panel>
             <mat-expansion-panel-header>
                 <mat-panel-title>Erweitert</mat-panel-title>
@@ -38,22 +38,22 @@
                 </mat-panel-description>-->
             </mat-expansion-panel-header>
 
-            <mat-form-field *ngIf="vehicleForm.value.cw != undefined">
+            <mat-form-field *ngIf="vehicleForm.value.cw != null">
                 <input matInput type="number" placeholder="Aerodynamik" formControlName="cw" requied>
                 <span matSuffix></span>
             </mat-form-field>
 
-            <mat-form-field *ngIf="vehicleForm.value.roll != undefined">
+            <mat-form-field *ngIf="vehicleForm.value.roll != null">
                 <input matInput type="number" placeholder="Rollwiederstand" formControlName="roll" requied>
                 <span matSuffix></span>
             </mat-form-field>
 
-            <mat-form-field *ngIf="vehicleForm.value.airdensity != undefined">
+            <mat-form-field *ngIf="vehicleForm.value.airdensity != null">
                 <input matInput type="number" placeholder="Luftdichte" formControlName="airdensity" requied>
                 <span matSuffix>kg/m³</span>
             </mat-form-field>
 
-            <mat-form-field *ngIf="vehicleForm.value.g != undefined">
+            <mat-form-field *ngIf="vehicleForm.value.g != null">
                 <input matInput type="number" placeholder="Gravitation" formControlName="g" requied>
                 <span matSuffix>m/s²</span>
             </mat-form-field>

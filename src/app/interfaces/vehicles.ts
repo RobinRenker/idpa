@@ -71,7 +71,6 @@ export class Train extends Vehicle {
 export class Ship extends Vehicle {
     constructor(name: string) {
         super(name, 3);
-        this.roll = 0;
         this.a = 0;
         this.cw = 0;
         this.maxPassengers = 0;
@@ -83,7 +82,6 @@ export class Ship extends Vehicle {
 export class Airplane extends Vehicle {
     constructor(name: string) {
         super(name, 4);
-        this.roll = 0;
         this.a = 0;
         this.cw = 0;
         this.maxPassengers = 0;

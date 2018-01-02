@@ -1,16 +1,16 @@
 export class Vehicle{
 
     public name: string;
-    public weight:number;
-    public emissions: number;
-    public usage: number;
-    public maxPassengers: number;
+    public weight:number = null;
+    public emissions: number = null;
+    public usage: number = null;
+    public maxPassengers: number = null;
     public author: string = "";
-    public type: number;
+    public type: number = null;
     public airdensity: number = 1.2;
-    public cw: number;
-    public a: number;
-    public roll: number;
+    public cw: number = null;
+    public a: number = null;
+    public roll: number = null;
     public g:number = 9.81;
 
     public engineType:number; //0 = gas : 1 = hybrid : 2 = electric : 3 = probably muscle or magic
