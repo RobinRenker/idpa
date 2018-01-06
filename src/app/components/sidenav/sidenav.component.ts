@@ -14,7 +14,7 @@ export class SidenavComponent {
         {name: 'Neue Aktivität', id: 'activities/add', icon: 'plus', login: true},
         {name: 'Fahrzeuge', id: 'vehicle/list', icon: 'car-side', login: true},
         {name: 'Wilkommen', id: 'start', icon: 'emoticon', login: false},
-        {name: 'Über', id: 'about', icon: 'information-outline', login: false}];
+        {name: 'Über', id: 'home', icon: 'information-outline', login: false}];
 
     constructor(public navService: NavService, public auth: AuthService) {
         

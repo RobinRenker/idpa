@@ -79,6 +79,9 @@
         <input matInput type="number" placeholder="Passagiere" formControlName="passengers" required> <mat-icon svgIcon="account" matSuffix></mat-icon>
     </mat-form-field>
 
+
+    <p>Berechneter CO2 Ausstoss: {{actvityForm.value.emissions}}</p>
+
     <button mat-raised-button color="primary" (click)="saveActivity()">Speichern</button>
 
 </form>

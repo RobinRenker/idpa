@@ -45,7 +45,8 @@ export class ActivityEditComponent implements OnInit {
             endString: ['Zürich', Validators.required],
             distance: [0, Validators.required],
             passengers: [1, Validators.required],
-            vehicle: ['', Validators.required]
+            vehicle: ['', Validators.required],
+            emissions: [0]
         });
 
         //check if device Location can be used
@@ -82,11 +83,9 @@ export class ActivityEditComponent implements OnInit {
                         else {
                             this.activityForm.patchValue({endString: address});
                         }
-
                     } else {
                         console.log(status);
                     }
-
                 });
             }));
         }
@@ -96,7 +95,8 @@ export class ActivityEditComponent implements OnInit {
         this.dist.getDistance(this.originMarker.getPosition(), this.destinationMarker.getPosition()).then((res) => {
             console.log(res);
             this.distance = res;
-            this.activityForm.patchValue({distance: Math.round(res.distance.value / 100) / 10})
+            this.activityForm.patchValue({distance: Math.round(res.distance.value / 100) / 10});
+            this.activityForm.patchValue({emissions: 12});
         });
     }
 
