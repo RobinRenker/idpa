@@ -5,7 +5,8 @@
         <mat-icon matListIcon svgIcon="train"></mat-icon>
         <h3 matLine>  {{activity.payload.doc.data().startString}}&nbsp; <mat-icon svgIcon="ray-start-arrow"></mat-icon> &nbsp;{{activity.payload.doc.data().endString}} </h3>
         <p matLine>
-             <span style="width: 140px; display: inline-block;">{{activity.payload.doc.data().time | date:'d.M.yyyy, HH:mm'}}</span>  {{(activity.payload.doc.data().distance || 0 ) | number:'1.1-5'}}km
+            <span style="width: 140px; display: inline-block;">{{activity.payload.doc.data().time | date:'d.M.yyyy, HH:mm'}}</span>  <span style="width: 100px; display: inline-block;">{{(activity.payload.doc.data().distance || 0 ) | number:'1.1-5'}}km</span>   <mat-icon svgIcon="periodic-table-co2"></mat-icon><span style="width: 100px; display: inline-block;">{{(activity.payload.doc.data().emissions || 0 ) | number:'1.1-5'}}g </span>
+            <mat-icon svgIcon="flash"></mat-icon>{{(activity.payload.doc.data().usage || 0 ) | number:'1.1-5'}}kj
         </p>
 
     </a>
