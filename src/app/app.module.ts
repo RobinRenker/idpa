@@ -55,7 +55,7 @@ import { ActivityService } from './providers/activity.service';
         HttpClientModule,
         ActivityModule,
         VehicleModule,
-        AppRoutingModule
+        AppRoutingModule,
     ],
     providers: [
         TextService,

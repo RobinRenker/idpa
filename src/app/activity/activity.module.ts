@@ -1,4 +1,3 @@
-
 import { ActivityListComponent } from './list/activity-list.component';
 import { NgModule } from '@angular/core';
 import { AppMaterialModule } from '../app.material-module';
@@ -15,11 +14,13 @@ import { ActivityRoutingModule } from './activity-routing.module';
 import { ActivityEditComponent } from './edit/activity-edit.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { VehicleModule } from '../vehicle/vehicle.module';
+import { ActivityOverviewComponent } from "./overview/activity-overview.component";
 
 @NgModule({
     declarations: [
         ActivityListComponent,
-        ActivityEditComponent
+        ActivityEditComponent,
+        ActivityOverviewComponent
     ],
     imports: [
         BrowserModule,
