@@ -245,6 +245,7 @@ export class ActivityEditComponent implements OnInit {
         activity.time = moment(date.format('YYYY-MM-DD') + ' ' + values.timeString).toDate();
         activity.distance = values.distance;
         activity.passengers = values.passengers;
+        activity.emissions = values.emissions;
         this.activityRef.ref.update({...activity});
     }
 
