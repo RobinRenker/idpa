@@ -76,7 +76,7 @@
     "@types/googlemaps": "^3.30.4",
     "angularfire2": "5.0.0-rc.3",
     "core-js": "^2.5.3",
-    "firebase": "4.8.0",
+    "firebase": "4.6.2",
     "hammer-timejs": "^1.1.0",
     "hammerjs": "^2.0.8",
     "http-server": "^0.9.0",

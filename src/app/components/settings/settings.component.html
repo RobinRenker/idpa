@@ -1,0 +1,15 @@
+<form [formGroup]="settingsForm" novalidate>
+
+    <mat-form-field>
+        <input matInput type="string" placeholder="Test" formControlName="test" required>
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-select type="number" placeholder="Energie Typ" formControlName="etype" required>
+            <mat-option *ngFor="let energy of energyTypes" [value]="energy.id">
+                {{ energy.txt }}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+</form>

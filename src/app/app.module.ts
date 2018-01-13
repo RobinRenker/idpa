@@ -31,6 +31,9 @@ import { NoContentComponent } from './components/no-content/no-content.component
 import { ActivityModule } from './activity/activity.module';
 import { VehicleModule } from "./vehicle/vehicle.module";
 import { ActivityService } from './providers/activity.service';
+import { TippModule } from "./tipp/tipp.module";
+import {TippService} from "./providers/tipp.service";
+import {SettingsComponent} from "./components/settings/settings.component";
 
 @NgModule({
     bootstrap: [
@@ -42,7 +45,8 @@ import { ActivityService } from './providers/activity.service';
         HomeComponent,
         StartComponent,
         SidenavComponent,
-        NoContentComponent
+        NoContentComponent,
+        SettingsComponent
     ],
     imports: [
         BrowserModule,
@@ -55,6 +59,7 @@ import { ActivityService } from './providers/activity.service';
         HttpClientModule,
         ActivityModule,
         VehicleModule,
+        TippModule,
         AppRoutingModule,
     ],
     providers: [
@@ -65,6 +70,7 @@ import { ActivityService } from './providers/activity.service';
         DistanceService,
         VehicleService,
         ActivityService,
+        TippService,
         {provide: MAT_DATE_LOCALE, useValue: 'de-CH'},
         {provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE]},
         {provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS},

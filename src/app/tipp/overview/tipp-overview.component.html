@@ -1,0 +1,8 @@
+<mat-tab-group>
+    <mat-tab label="Tipps">
+        <div *ngFor="let tipp of tippService.getPersonalTipps()">{{tipp.title}}</div>
+    </mat-tab>
+    <mat-tab label="Facts">
+        <div *ngFor="let fact of facts">{{fact.title}}</div>
+    </mat-tab>
+</mat-tab-group>
