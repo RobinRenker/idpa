@@ -324,7 +324,8 @@ module.exports = function (env) {
                     },
                     requestTypes: ['navigate']
                 }
-            ]
+            ],
+            excludes: ['**/.*', '**/*.map', '**/*.gz','*/__*','*%2F__*']
         })
 
     ],
