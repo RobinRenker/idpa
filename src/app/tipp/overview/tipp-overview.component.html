@@ -1,8 +1,26 @@
 <mat-tab-group>
     <mat-tab label="Tipps">
-        <div *ngFor="let tipp of tippService.getPersonalTipps()">{{tipp.title}}</div>
+
+        <mat-accordion>
+            <mat-expansion-panel *ngFor="let tipp of tipps">
+                <mat-expansion-panel-header>
+                    {{tipp.title}}
+                </mat-expansion-panel-header>
+                <p>{{tipp.text}}</p>
+            </mat-expansion-panel>
+        </mat-accordion>
+
     </mat-tab>
     <mat-tab label="Facts">
-        <div *ngFor="let fact of facts">{{fact.title}}</div>
+
+        <mat-accordion>
+            <mat-expansion-panel *ngFor="let fact of facts">
+                <mat-expansion-panel-header>
+                    {{fact.title}}
+                </mat-expansion-panel-header>
+                <p>{{fact.text}}</p>
+            </mat-expansion-panel>
+        </mat-accordion>
+
     </mat-tab>
 </mat-tab-group>

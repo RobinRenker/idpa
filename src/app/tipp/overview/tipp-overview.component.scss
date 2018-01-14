@@ -1,5 +1,17 @@
-:host{
-  /deep/ .mat-tab-label{
+:host {
+  /deep/ .mat-tab-label {
     flex-grow: 1;
   }
+  /deep/ mat-tab-body {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .mat-tab-body-content {
+      max-width: 800px;
+      width: 100%;
+    }
+  }
+
 }
