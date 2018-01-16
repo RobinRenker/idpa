@@ -14,13 +14,11 @@ import { ActivityRoutingModule } from './activity-routing.module';
 import { ActivityEditComponent } from './edit/activity-edit.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { VehicleModule } from '../vehicle/vehicle.module';
-import { ActivityOverviewComponent } from "./overview/activity-overview.component";
 
 @NgModule({
     declarations: [
         ActivityListComponent,
-        ActivityEditComponent,
-        ActivityOverviewComponent
+        ActivityEditComponent
     ],
     imports: [
         BrowserModule,

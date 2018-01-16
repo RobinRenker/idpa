@@ -3,7 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { ActivityListComponent } from './list/activity-list.component';
 import { ActivityEditComponent } from './edit/activity-edit.component';
 import { AuthGuardService } from '../auth/auth-guard.service';
-import {ActivityOverviewComponent} from "./overview/activity-overview.component";
 
 const activityRoutes: Routes = [
     {
@@ -13,8 +12,7 @@ const activityRoutes: Routes = [
             {path: 'add', component: ActivityEditComponent},
             {path: 'edit/:id', component: ActivityEditComponent},
         ]
-    },
-    { path: 'evaluate', component: ActivityOverviewComponent}
+    }
 ];
 
 @NgModule({

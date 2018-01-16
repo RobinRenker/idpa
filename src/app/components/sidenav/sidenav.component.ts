@@ -11,7 +11,7 @@ export class SidenavComponent {
 
     private views = [
         {name: 'Wilkommen', id: 'start', icon: 'emoticon', login: false},
-        {name: 'Auswertung', id: 'evaluate', icon: 'earth', login: true},
+        {name: 'Auswertung', id: 'overview', icon: 'earth', login: true},
         {name: 'Tipps', id: 'tipp', icon: 'exclamation', login: true},
         {name: 'Meine Aktivitäten', id: 'activities/list', icon: 'home', login: true},
         {name: 'Neue Aktivität', id: 'activities/add', icon: 'plus', login: true},

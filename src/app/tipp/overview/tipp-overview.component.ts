@@ -11,10 +11,10 @@ import {Tipp} from "../../interfaces/tipp";
 export class TippOverviewComponent {
 
     public facts: Fact[] = Facts;
-    public tipps: Tipp = [];
+    public tipps: Tipp[] = [];
 
     constructor(public tippService:TippService){
-        this.tipps = tippService.getPersonalTipps();
+        //this.tipps = tippService.getPersonalTipps();
     }
 }
 

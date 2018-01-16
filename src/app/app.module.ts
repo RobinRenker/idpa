@@ -21,6 +21,7 @@ import { AuthGuardService } from './auth/auth-guard.service';
 import { NavService } from './providers/nav.service';
 import { DistanceService } from './providers/distance.service';
 import { VehicleService } from './providers/vehicle.service';
+import { EvaluateService } from './providers/evaluate.service';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
@@ -34,6 +35,7 @@ import { ActivityService } from './providers/activity.service';
 import { TippModule } from "./tipp/tipp.module";
 import {TippService} from "./providers/tipp.service";
 import {SettingsComponent} from "./components/settings/settings.component";
+import {EvaluateModule} from "./evaluate/evaluate.module";
 
 @NgModule({
     bootstrap: [
@@ -59,6 +61,7 @@ import {SettingsComponent} from "./components/settings/settings.component";
         HttpClientModule,
         ActivityModule,
         VehicleModule,
+        EvaluateModule,
         TippModule,
         AppRoutingModule,
     ],
@@ -70,6 +73,7 @@ import {SettingsComponent} from "./components/settings/settings.component";
         DistanceService,
         VehicleService,
         ActivityService,
+        EvaluateService,
         TippService,
         {provide: MAT_DATE_LOCALE, useValue: 'de-CH'},
         {provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE]},
