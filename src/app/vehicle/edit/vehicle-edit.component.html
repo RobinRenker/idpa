@@ -28,6 +28,15 @@
         <span matSuffix>Pers.</span>
     </mat-form-field>
 
+    <mat-form-field *ngIf="vehicleForm.value.co2perkm != null">
+        <input matInput type="number" placeholder="CO2 Ausstoss pro 100km" formControlName="co2perkm" requied>
+        <span matSuffix>Gramm</span>
+    </mat-form-field>
+
+    <mat-form-field *ngIf="vehicleForm.value.liter100km != null">
+        <input matInput type="number" placeholder="Liter pro 100km" formControlName="liter100km" requied>
+        <span matSuffix>Liter</span>
+    </mat-form-field>
 
     <mat-accordion *ngIf="vehicleForm.value.type != null">
         <mat-expansion-panel>

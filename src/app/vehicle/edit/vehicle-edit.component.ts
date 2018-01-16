@@ -37,6 +37,8 @@ export class VehicleEditComponent implements OnInit{
             g: [undefined, Validators.required],
             airdensity: [undefined, Validators.required],
             maxPassengers: [undefined, Validators.required],
+            co2perkm: [undefined, Validators.required],
+            liter100km: [undefined, Validators.required],
         });
     }
 
