@@ -35,7 +35,7 @@ export class AuthService {
      */
     public login() {
         this.auth.auth.signInWithPopup(new GoogleAuthProvider()).then((result) => {
-            this.router.navigate(['/home']); //navigate to home after login
+            this.router.navigate(['/start']); //navigate to home after login
         }, (error) => {
             console.log(error);
             alert('LOGIN FAILED :(');
