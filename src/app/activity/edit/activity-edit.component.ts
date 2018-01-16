@@ -21,6 +21,7 @@ import GeocoderStatus = google.maps.GeocoderStatus;
 import GeocoderResult = google.maps.GeocoderResult;
 import { Subject } from 'rxjs/Subject';
 import { VehicleService } from '../../providers/vehicle.service';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
     selector: 'activity-edit',
@@ -34,7 +35,7 @@ export class ActivityEditComponent implements OnInit {
 
     public showPosition = false;
 
-    constructor(public auth: AuthService, private route: ActivatedRoute, public dist: DistanceService, public activityService: ActivityService, public fb: FormBuilder, public vehicleService: VehicleService, public router: Router) {
+    constructor(public auth: AuthService, private route: ActivatedRoute, public dist: DistanceService, public activityService: ActivityService, public fb: FormBuilder, public vehicleService: VehicleService, public router: Router, public snackBar: MatSnackBar) {
 
         this.activityForm = this.fb.group({
             time: ['', Validators.required],
@@ -45,6 +46,7 @@ export class ActivityEditComponent implements OnInit {
             endString: ['Zürich', Validators.required],
             distance: [0, Validators.required],
             passengers: [1, Validators.required],
+
             vehicle: ['', Validators.required],
             emissions: [0]
         });
@@ -246,7 +248,11 @@ export class ActivityEditComponent implements OnInit {
         activity.distance = values.distance;
         activity.passengers = values.passengers;
         activity.emissions = values.emissions;
-        this.activityRef.ref.update({...activity});
+        this.activityRef.ref.update({...activity}).then(()=>{
+            this.snackBar.open("Aktivität gespeichert", "", {
+                duration: 1000,
+            });
+        });
     }
 
 }

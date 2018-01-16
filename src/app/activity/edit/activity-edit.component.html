@@ -69,7 +69,7 @@
     </mat-form-field>
 
     <vehicle-detail *ngIf="activityForm.value.vehicle.length > 1" [id]="activityForm.value.vehicle"></vehicle-detail>
-    {{activityForm.value.vehicle.length}}
+
 
     <mat-form-field>
         <input matInput type="number" placeholder="Distanz" formControlName="distance" required> <span matSuffix>km</span>

@@ -15,7 +15,7 @@ import {
     MatAutocompleteModule,
     MatTabsModule,
     MatSliderModule,
-    MatExpansionModule
+    MatExpansionModule, MatSnackBarModule
 } from '@angular/material';
 import {NgModule} from '@angular/core';
 import {DomSanitizer} from '@angular/platform-browser';
@@ -41,6 +41,7 @@ import {DomSanitizer} from '@angular/platform-browser';
             MatAutocompleteModule,
             MatTabsModule,
             MatSliderModule,
+            MatSnackBarModule,
             MatExpansionModule
         ],
 
@@ -61,6 +62,7 @@ import {DomSanitizer} from '@angular/platform-browser';
             MatAutocompleteModule,
             MatTabsModule,
             MatSliderModule,
+            MatSnackBarModule,
             MatExpansionModule
         ],
 })
