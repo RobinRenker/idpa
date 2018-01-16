@@ -43,6 +43,7 @@ export class EvaluateService {
                 res += ac.emissions;
             }
         }
+        return res;
     }
 
     public sumYear(date:Date): number {
