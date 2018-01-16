@@ -12,6 +12,9 @@ export class Vehicle{
     public a: number = null;
     public roll: number = null;
     public g:number = 9.81;
+    public co2perkm:number; //gramm ... Liter * 23
+    public liter100km:number; //Liter ... gramm / 23
+    public greyproduction: number = 0; // Herstellungsausstoss
 
     public engineType:number; //0 = gas : 1 = hybrid : 2 = electric : 3 = probably muscle or magic
 
@@ -19,7 +22,24 @@ export class Vehicle{
         this.type = type;
         this.name = name;
     }
-    public calcEmission(distance:number, time?:number, velocity?:number){
+    //Distanz
+    public calcEmission(distance:number):string{     //, time?:number, velocity?:number){
+        let ret: string = "";
+        if (this.co2perkm == undefined || this.co2perkm !> 0){
+            if(this.liter100km != undefined && this.liter100km > 0){
+                this.co2perkm = this.liter100km * 23; // Faustwert
+            } else {
+                ret = "Kein Ausstoss";
+            }
+        }
+        if(ret != "Kein Ausstoss"){
+            ret = ""+this.co2perkm * distance;
+            if (parseInt(ret) > 1000){
+                ret = ret + "g";
+            } else {
+                ret = ret + "kg";
+            }
+        }
         //distance = Meter
         //velocity = Meter/Sekunde
         //time = in Sekunden
@@ -27,7 +47,7 @@ export class Vehicle{
         //entweder Zeit oder Geschwindigkeit ... egal welches
 
         //Return in Gramm.
-        return 0;
+        return ret;
     }
     public calcEnergy(distance:number, time?:number, velocity?:number){
 

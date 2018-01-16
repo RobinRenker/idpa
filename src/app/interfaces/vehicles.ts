@@ -9,6 +9,8 @@ export class Car extends Vehicle{
         this.maxPassengers = 4;
         this.weight = 1600;
         this.engineType = 0;
+        this.co2perkm = 100;
+        this.liter100km = 5;
     }
 }
 
@@ -21,6 +23,8 @@ export class Bike extends Vehicle {
         this.maxPassengers = 1;
         this.weight = 200;
         this.engineType = 0;
+        this.co2perkm = 0;0;//?
+        this.liter100km = 3.5;
     }
 }
 
@@ -33,6 +37,8 @@ export class Bus extends Vehicle {
         this.maxPassengers = 30;
         this.weight = 10000;
         this.engineType = 0;
+        this.co2perkm = 0;//?
+        this.liter100km = 0;//?
     }
 }
 
@@ -65,6 +71,8 @@ export class Train extends Vehicle {
         this.maxPassengers = 0;
         this.weight = 0;
         this.engineType = 2;
+        this.co2perkm = 0;//?
+        this.liter100km = 0;//?
     }
 }
 
@@ -76,6 +84,8 @@ export class Ship extends Vehicle {
         this.maxPassengers = 0;
         this.weight = 0;
         this.engineType = 0;
+        this.co2perkm = 0;//?
+        this.liter100km = 0;//?
     }
 }
 
