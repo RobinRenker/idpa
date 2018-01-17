@@ -23,17 +23,7 @@ export class Vehicle{
         this.name = name;
     }
     //Distanz
-    public calcEmission(distance:number, passengers:number):number{     //, time?:number, velocity?:number){
-        return this.co2perkm * distance / passengers;
 
-        //distance = Meter
-        //velocity = Meter/Sekunde
-        //time = in Sekunden
-
-        //entweder Zeit oder Geschwindigkeit ... egal welches
-
-        //Return in Gramm.
-    }
     public calcEnergy(distance:number, time?:number, velocity?:number){
 
         //Return in Watt

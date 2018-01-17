@@ -58,8 +58,6 @@ export class ActivityEditComponent implements OnInit {
             }));
         }
 
-
-
     }
 
     public useCurrentLocation(start: boolean) {
@@ -94,20 +92,27 @@ export class ActivityEditComponent implements OnInit {
     }
 
     public calc() {
+        console.log('recalculating distance');
         this.dist.getDistance(this.originMarker.getPosition(), this.destinationMarker.getPosition()).then((res) => {
             console.log(res);
             this.distance = res;
             let distance = Math.round(res.distance.value / 100) / 10;
             this.activityForm.patchValue({distance: distance});
-            this.activityForm.patchValue({emissions: 12});
-            let vehicle = this.activityForm.get("vehicle").value;
-            let passengers = this.activityForm.get("passengers").value;
-            this.vehicleService.getVehicle(vehicle).subscribe((vehicle)=>{
+            this.calcEmissions();
 
-                let emissions = vehicle.calcEmission(distance,passengers);
-                this.activityForm.patchValue({emissions: emissions});
-            })
         });
+    }
+
+    public calcEmissions(){
+        console.log('recalculate emissions');
+        let vehicle = this.activityForm.get('vehicle').value;
+        let distance = this.activityForm.get('distance').value;
+        let passengers = this.activityForm.get('passengers').value;
+        this.vehicleService.getVehicle(vehicle).subscribe((vehicle) => {
+
+            let emissions = this.vehicleService.calcEmission(distance, passengers, vehicle);
+            this.activityForm.patchValue({emissions: emissions});
+        })
     }
 
     public originMarker: Marker;
@@ -220,11 +225,10 @@ export class ActivityEditComponent implements OnInit {
         this.activityForm.patchValue(activity, {emitEvent: false});
 
         this.activityForm.get('passengers').clearValidators();
-        this.vehicleService.getVehicle(activity.vehicle).subscribe((vehicle)=>{
-            this.activityForm.get('passengers').setValidators([Validators.max(vehicle.maxPassengers),Validators.required, Validators.min(1)]);
+        this.vehicleService.getVehicle(activity.vehicle).subscribe((vehicle) => {
+            this.activityForm.get('passengers').setValidators([Validators.max(vehicle.maxPassengers), Validators.required, Validators.min(1)]);
             this.activityForm.get('passengers').setValue(this.activityForm.get('passengers').value)
         })
-
 
         //CHANGE LISTENERS
         this.activityForm.get('startString').valueChanges.debounceTime(1000).subscribe((value => {
@@ -250,15 +254,16 @@ export class ActivityEditComponent implements OnInit {
 
         this.activityForm.get('vehicle').valueChanges.debounceTime(500).subscribe((value => {
             this.activityForm.get('passengers').clearValidators();
-            this.vehicleService.getVehicle(value).subscribe((vehicle)=>{
-                this.activityForm.get('passengers').setValidators([Validators.max(vehicle.maxPassengers),Validators.required, Validators.min(1)]);
-                this.activityForm.get('passengers').setValue(this.activityForm.get('passengers').value)
+            this.vehicleService.getVehicle(value).subscribe((vehicle) => {
+                this.activityForm.get('passengers').setValidators([Validators.max(vehicle.maxPassengers), Validators.required, Validators.min(1)]);
+                this.activityForm.get('passengers').setValue(this.activityForm.get('passengers').value);
+                this.calcEmissions();
 
-            })
+            });
+
 
         }));
     }
-
 
     public saveActivity() {
 
@@ -274,8 +279,8 @@ export class ActivityEditComponent implements OnInit {
         activity.distance = values.distance;
         activity.passengers = values.passengers;
         activity.emissions = values.emissions;
-        this.activityRef.ref.update({...activity}).then(()=>{
-            this.snackBar.open("Aktivität gespeichert", "", {
+        this.activityRef.ref.update({...activity}).then(() => {
+            this.snackBar.open('Aktivität gespeichert', '', {
                 duration: 1000,
             });
         });

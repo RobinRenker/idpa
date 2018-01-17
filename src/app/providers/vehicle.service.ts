@@ -50,4 +50,17 @@ export class VehicleService {
             console.log(id + " deleted");
         });
     }
+
+    public calcEmission(distance:number, passengers:number, vehicle:Vehicle):number{     //, time?:number, velocity?:number){
+        console.log(vehicle);
+        return vehicle.co2perkm * distance / passengers;
+
+        //distance = Meter
+        //velocity = Meter/Sekunde
+        //time = in Sekunden
+
+        //entweder Zeit oder Geschwindigkeit ... egal welches
+
+        //Return in Gramm.
+    }
 }
