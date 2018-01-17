@@ -10,8 +10,8 @@ import {Activity} from "../../interfaces/activity";
 
 export class EvaluateShowComponent {
 
-    @Input title: string = "";
-    @Input ac: Activity[] = [];
+    @Input() title: string = "";
+    @Input() ac: Activity[] = [];
 
     constructor(public evaluateService: EvaluateService){}
 }
