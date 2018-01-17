@@ -11,10 +11,12 @@ import {ReactiveFormsModule} from '@angular/forms';
 
 import {EvaluateRoutingModule} from "./evaluate-routing.module";
 import {EvaluateOverviewComponent} from "./overview/evaluate-overview.component";
+import {EvaluateShowComponent} from "./show/evaluate-show.component";
 
 @NgModule({
     declarations: [
-        EvaluateOverviewComponent
+        EvaluateOverviewComponent,
+        EvaluateShowComponent
     ],
     imports: [
         EvaluateRoutingModule,

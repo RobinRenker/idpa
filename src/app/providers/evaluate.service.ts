@@ -28,14 +28,9 @@ export class EvaluateService {
                 this.activities = val;
             });
         });
-
-        setInterval(() => {
-            let x: Date = new Date();
-            console.log(this.sumDay(x));
-        },1000);
     }
 
-    public sumDay(date:Date): void {
+    public sumDay(date:Date): number {
         let res:number = 0;
         for(let i:number = 0; i < this.activities.length; i++){
             let ac:Activity = this.activities[i];
@@ -66,12 +61,5 @@ export class EvaluateService {
             }
         }
         return res;
-    }
-
-    private getDate(date:date):number{
-        var dd = date.getDate();
-        var mm = date.getMonth()+1; //January is 0!
-        var yyyy = date.getFullYear();
-        return a
     }
 }
