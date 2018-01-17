@@ -13,7 +13,13 @@ export class EvaluateShowComponent {
     @Input() title: string = "";
     @Input() ac: Activity[] = [];
 
-    constructor(public evaluateService: EvaluateService){}
+    constructor(public evaluateService: EvaluateService){
+
+    }
+
+    public getCo2(): number {
+        return this.evaluateService.sumAc(this.ac);
+    }
 }
 
 

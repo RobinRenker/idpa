@@ -3,6 +3,7 @@ import {Activity} from '../interfaces/activity';
 import {AuthService} from '../auth/auth.service';
 import {AngularFirestoreCollection} from 'angularfire2/firestore/collection/collection';
 import {AngularFirestore} from 'angularfire2/firestore';
+import {Vehicle} from "../interfaces/vehicle";
 
 @Injectable()
 export class EvaluateService {
@@ -14,6 +15,7 @@ export class EvaluateService {
 
     public activities: Activity[] = [];
     public activityCollection: AngularFirestoreCollection<Activity>;
+    public today: Date = new Date();
 
     constructor(public auth: AuthService, public db: AngularFirestore,) {
 
@@ -28,38 +30,53 @@ export class EvaluateService {
                 this.activities = val;
             });
         });
+
+
+        setInterval(() => {
+            console.log(this.getAcToday());
+        },2000);
     }
 
-    public sumDay(date:Date): number {
-        let res:number = 0;
+    public getAcToday():Activity[]{
+        let acs: Activity[] = [];
         for(let i:number = 0; i < this.activities.length; i++){
             let ac:Activity = this.activities[i];
-            if(date.getDate() == ac.time.getDate() && date.getMonth() == ac.time.getMonth() && date.getFullYear() == ac.time.getFullYear()){
-                res += ac.emissions;
+            if(this.today.getDate() == ac.time.getDate() && this.today.getMonth() == ac.time.getMonth() && this.today.getFullYear() == ac.time.getFullYear()){
+                acs.push(ac);
             }
+        }
+        return acs;
+    }
+
+    public sumAc(acs:Activity[]): number {
+        let res:number = 0;
+        for(let i:number = 0; i < acs.length; i++){
+            res += acs[i].emissions;
         }
         return res;
     }
 
-    public sumYear(date:Date): number {
-        let res:number = 0;
+    public getAcYear(): Activity[] {
+        let date:Date = new Date();
+        let acs: Activity[] = [];
         for(let i:number = 0; i < this.activities.length; i++){
             let ac:Activity = this.activities[i];
-            if(date.getFullYear() == ac.time.getFullYear()){
-                res += ac.emissions;
+            if(this.today.getFullYear() == ac.time.getFullYear()){
+                acs.push(ac);
             }
         }
-        return res;
+        return acs;
     }
 
-    public sumMonth(date:Date): number {
-        let res:number = 0;
+    public getAcMonth(): Activity[] {
+
+        let acs: Activity[] = [];
         for(let i:number = 0; i < this.activities.length; i++){
             let ac:Activity = this.activities[i];
-            if(date.getMonth() == ac.time.getMonth() && date.getFullYear() == ac.time.getFullYear()){
-                res += ac.emissions;
+            if(this.today.getMonth() == ac.time.getMonth() && this.today.getFullYear() == ac.time.getFullYear()){
+                acs.push(ac);
             }
         }
-        return res;
+        return acs;
     }
 }
