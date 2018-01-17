@@ -53,7 +53,7 @@ export class VehicleService {
 
     public calcEmission(distance:number, passengers:number, vehicle:Vehicle):number{     //, time?:number, velocity?:number){
         console.log(vehicle);
-        return vehicle.co2perkm * distance / passengers;
+        return vehicle.co2perkm * (distance/ 100) / passengers;
 
         //distance = Meter
         //velocity = Meter/Sekunde

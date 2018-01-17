@@ -108,11 +108,12 @@ export class ActivityEditComponent implements OnInit {
         let vehicle = this.activityForm.get('vehicle').value;
         let distance = this.activityForm.get('distance').value;
         let passengers = this.activityForm.get('passengers').value;
-        this.vehicleService.getVehicle(vehicle).subscribe((vehicle) => {
+        return this.vehicleService.getVehicle(vehicle).first().toPromise().then((vehicle) => {
 
             let emissions = this.vehicleService.calcEmission(distance, passengers, vehicle);
             this.activityForm.patchValue({emissions: emissions});
-        })
+
+        });
     }
 
     public originMarker: Marker;
@@ -228,7 +229,7 @@ export class ActivityEditComponent implements OnInit {
         this.vehicleService.getVehicle(activity.vehicle).subscribe((vehicle) => {
             this.activityForm.get('passengers').setValidators([Validators.max(vehicle.maxPassengers), Validators.required, Validators.min(1)]);
             this.activityForm.get('passengers').setValue(this.activityForm.get('passengers').value)
-        })
+        });
 
         //CHANGE LISTENERS
         this.activityForm.get('startString').valueChanges.debounceTime(1000).subscribe((value => {
@@ -278,12 +279,18 @@ export class ActivityEditComponent implements OnInit {
         activity.time = moment(date.format('YYYY-MM-DD') + ' ' + values.timeString).toDate();
         activity.distance = values.distance;
         activity.passengers = values.passengers;
-        activity.emissions = values.emissions;
-        this.activityRef.ref.update({...activity}).then(() => {
-            this.snackBar.open('Aktivität gespeichert', '', {
-                duration: 1000,
+
+        this.calcEmissions().then(()=>{
+            console.log('gett ripped');
+            activity.emissions = this.activityForm.get('emissions').value;
+            console.log(values.emissions);
+            this.activityRef.ref.update({...activity}).then(() => {
+                this.snackBar.open('Aktivität gespeichert', '', {
+                    duration: 1000,
+                });
             });
         });
+
     }
 
 }

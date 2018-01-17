@@ -9,7 +9,7 @@ export class Activity {
         this.vehicle = '';
         this.start = new GeoPoint(46.957, 7.444);
         this.end = new GeoPoint(47.376, 8.541);
-        this.emissions = 12;
+        this.emissions = 0;
 
     }
 
