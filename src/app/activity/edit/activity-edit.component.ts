@@ -44,8 +44,8 @@ export class ActivityEditComponent implements OnInit {
             startString: ['Bern', Validators.required],
             end: ['', Validators.required],
             endString: ['Zürich', Validators.required],
-            distance: [0, Validators.required],
-            passengers: [1, Validators.required],
+            distance: [0, [Validators.required, Validators.min(0)]],
+            passengers: [1, [Validators.required]],
 
             vehicle: ['', Validators.required],
             emissions: [0]
@@ -97,8 +97,16 @@ export class ActivityEditComponent implements OnInit {
         this.dist.getDistance(this.originMarker.getPosition(), this.destinationMarker.getPosition()).then((res) => {
             console.log(res);
             this.distance = res;
-            this.activityForm.patchValue({distance: Math.round(res.distance.value / 100) / 10});
+            let distance = Math.round(res.distance.value / 100) / 10;
+            this.activityForm.patchValue({distance: distance});
             this.activityForm.patchValue({emissions: 12});
+            let vehicle = this.activityForm.get("vehicle").value;
+            let passengers = this.activityForm.get("passengers").value;
+            this.vehicleService.getVehicle(vehicle).subscribe((vehicle)=>{
+
+                let emissions = vehicle.calcEmission(distance,passengers);
+                this.activityForm.patchValue({emissions: emissions});
+            })
         });
     }
 
@@ -211,6 +219,14 @@ export class ActivityEditComponent implements OnInit {
         this.map.setZoom(8);
         this.activityForm.patchValue(activity, {emitEvent: false});
 
+        this.activityForm.get('passengers').clearValidators();
+        this.vehicleService.getVehicle(activity.vehicle).subscribe((vehicle)=>{
+            this.activityForm.get('passengers').setValidators([Validators.max(vehicle.maxPassengers),Validators.required, Validators.min(1)]);
+            this.activityForm.get('passengers').setValue(this.activityForm.get('passengers').value)
+        })
+
+
+        //CHANGE LISTENERS
         this.activityForm.get('startString').valueChanges.debounceTime(1000).subscribe((value => {
             console.log(value);
 
@@ -232,7 +248,17 @@ export class ActivityEditComponent implements OnInit {
 
         }));
 
+        this.activityForm.get('vehicle').valueChanges.debounceTime(500).subscribe((value => {
+            this.activityForm.get('passengers').clearValidators();
+            this.vehicleService.getVehicle(value).subscribe((vehicle)=>{
+                this.activityForm.get('passengers').setValidators([Validators.max(vehicle.maxPassengers),Validators.required, Validators.min(1)]);
+                this.activityForm.get('passengers').setValue(this.activityForm.get('passengers').value)
+
+            })
+
+        }));
     }
+
 
     public saveActivity() {
 

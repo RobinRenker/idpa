@@ -82,7 +82,7 @@
 
     <p>Berechneter CO2 Ausstoss: {{activityForm.value.emissions}}</p>
 
-    <button mat-raised-button color="primary" (click)="saveActivity()">Speichern</button>
+    <button mat-raised-button color="primary" type="submit" [disabled]="activityForm.invalid" (click)="saveActivity()">Speichern</button>
 
 </form>
 

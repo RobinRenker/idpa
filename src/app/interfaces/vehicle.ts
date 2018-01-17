@@ -23,23 +23,9 @@ export class Vehicle{
         this.name = name;
     }
     //Distanz
-    public calcEmission(distance:number):string{     //, time?:number, velocity?:number){
-        let ret: string = "";
-        if (this.co2perkm == undefined || this.co2perkm !> 0){
-            if(this.liter100km != undefined && this.liter100km > 0){
-                this.co2perkm = this.liter100km * 23; // Faustwert
-            } else {
-                ret = "Kein Ausstoss";
-            }
-        }
-        if(ret != "Kein Ausstoss"){
-            ret = ""+this.co2perkm * distance;
-            if (parseInt(ret) > 1000){
-                ret = ret + "g";
-            } else {
-                ret = ret + "kg";
-            }
-        }
+    public calcEmission(distance:number, passengers:number):number{     //, time?:number, velocity?:number){
+        return this.co2perkm * distance / passengers;
+
         //distance = Meter
         //velocity = Meter/Sekunde
         //time = in Sekunden
@@ -47,7 +33,6 @@ export class Vehicle{
         //entweder Zeit oder Geschwindigkeit ... egal welches
 
         //Return in Gramm.
-        return ret;
     }
     public calcEnergy(distance:number, time?:number, velocity?:number){
 
