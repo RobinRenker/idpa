@@ -3,7 +3,6 @@ import {Activity} from '../interfaces/activity';
 import {AuthService} from '../auth/auth.service';
 import {AngularFirestoreCollection} from 'angularfire2/firestore/collection/collection';
 import {AngularFirestore} from 'angularfire2/firestore';
-import {Vehicle} from "../interfaces/vehicle";
 
 @Injectable()
 export class EvaluateService {
