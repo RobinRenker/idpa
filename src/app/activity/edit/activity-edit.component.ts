@@ -258,10 +258,15 @@ export class ActivityEditComponent implements OnInit {
             this.vehicleService.getVehicle(value).subscribe((vehicle) => {
                 this.activityForm.get('passengers').setValidators([Validators.max(vehicle.maxPassengers), Validators.required, Validators.min(1)]);
                 this.activityForm.get('passengers').setValue(this.activityForm.get('passengers').value);
-                this.calcEmissions();
+
 
             });
+        }));
 
+        this.activityForm.get('passengers').valueChanges.debounceTime(500).subscribe((value => {
+            if(this.activityForm.get('passengers').valid){
+                this.calcEmissions();
+            }
 
         }));
     }

@@ -1,3 +1,5 @@
-<evaluate-show [title]="'Heute'" [ac]="evaluateService.getAcToday()"></evaluate-show>
-<evaluate-show [title]="'Monat'" [ac]="evaluateService.getAcMonth()"></evaluate-show>
-<evaluate-show [title]="'Jahr'" [ac]="evaluateService.getAcYear()"></evaluate-show>
+<div class="wrapper">
+    <evaluate-show [title]="'Heute'" [maxValue]="maxPerDayTransport" [ac]="evaluateService.getAcToday()"></evaluate-show>
+    <evaluate-show [title]="'Monat'" [maxValue]="maxPerMonthTransport" [ac]="evaluateService.getAcMonth()"></evaluate-show>
+    <evaluate-show [title]="'Jahr'" [maxValue]="maxPerYearTransport" [ac]="evaluateService.getAcYear()"></evaluate-show>
+</div>

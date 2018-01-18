@@ -1,1 +1,8 @@
-<h1>{{getCo2()}}</h1>
+<h1>{{title}}</h1>
+<h3>{{getCo2()| number:'1.0-0'}}g von {{maxValue| number:'1.0-0'}}g CO&#8322;</h3>
+
+<mat-progress-bar mode="buffer" [bufferValue]="50" [value]="getPercent()/2"></mat-progress-bar>
+<mat-progress-bar mode="buffer" [bufferValue]="50" [value]="getPercent()/2"></mat-progress-bar>
+<mat-progress-bar mode="buffer" [bufferValue]="50" [value]="getPercent()/2"></mat-progress-bar>
+<mat-progress-bar class="flip" mode="determinate" color="warn" [value]="50"></mat-progress-bar>
+<p>{{getPercent()| number:'1.0-0'}}%</p>

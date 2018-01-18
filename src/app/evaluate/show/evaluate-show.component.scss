@@ -1,0 +1,12 @@
+:host{
+  h1{
+    margin-bottom: 4px;
+  }
+  .flip {
+    transform: rotate(180deg);
+  }
+
+  ::ng-deep .mat-progress-bar[mode=buffer] .mat-progress-bar-background {
+    display: none;
+  }
+}

@@ -12,6 +12,7 @@ export class EvaluateShowComponent {
 
     @Input() title: string = "";
     @Input() ac: Activity[] = [];
+    @Input() maxValue: number = 1;
 
     constructor(public evaluateService: EvaluateService){
 
@@ -19,6 +20,11 @@ export class EvaluateShowComponent {
 
     public getCo2(): number {
         return this.evaluateService.sumAc(this.ac);
+    }
+
+    public getPercent(): number {
+        let use = this.evaluateService.sumAc(this.ac);
+        return use / this.maxValue * 100;
     }
 }
 

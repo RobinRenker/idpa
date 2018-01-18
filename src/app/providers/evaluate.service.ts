@@ -31,10 +31,6 @@ export class EvaluateService {
             });
         });
 
-
-        setInterval(() => {
-            console.log(this.getAcToday());
-        },2000);
     }
 
     public getAcToday():Activity[]{
@@ -51,7 +47,7 @@ export class EvaluateService {
     public sumAc(acs:Activity[]): number {
         let res:number = 0;
         for(let i:number = 0; i < acs.length; i++){
-            res += acs[i].emissions;
+            res += acs[i].emissions || 0;
         }
         return res;
     }
