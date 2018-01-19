@@ -1,10 +1,9 @@
-import {Vehicle} from "./vehicle";
-
 export class Tipp {
 
     public title: string = "";
     public text: string = "";
-    public vehicles: Vehicle[] = []; //Vehicles it fits to
+    public vehicles: any[] = []; //Vehicles it fits to
+    public src: string = "";
 
     constructor(title?:string,text?:string){
         this.title = title;
