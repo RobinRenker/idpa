@@ -3,6 +3,8 @@ import {Activity} from '../interfaces/activity';
 import {AuthService} from '../auth/auth.service';
 import {AngularFirestoreCollection} from 'angularfire2/firestore/collection/collection';
 import {AngularFirestore} from 'angularfire2/firestore';
+import {Vehicle} from "../interfaces/vehicle";
+import {VehicleService} from "./vehicle.service";
 
 @Injectable()
 export class EvaluateService {
@@ -16,7 +18,7 @@ export class EvaluateService {
     public activityCollection: AngularFirestoreCollection<Activity>;
     public today: Date = new Date();
 
-    constructor(public auth: AuthService, public db: AngularFirestore,) {
+    constructor(public auth: AuthService, public db: AngularFirestore, public vehileService: VehicleService) {
 
         //just get them all
         this.auth.user.subscribe((user) => {
@@ -29,7 +31,6 @@ export class EvaluateService {
                 this.activities = val;
             });
         });
-
     }
 
     public getAcToday():Activity[]{

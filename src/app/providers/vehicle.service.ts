@@ -53,7 +53,6 @@ export class VehicleService {
     }
 
     public calcEmission(distance:number, passengers:number, vehicle:Vehicle):number{     //, time?:number, velocity?:number){
-        console.log(vehicle);
         let fuel:number = 0;
 
         if(vehicle.fuelType == 0 && vehicle.liter100km != undefined){

@@ -1,5 +1,5 @@
 <div class="wrapper">
     <evaluate-show [title]="'Heute'" [maxValue]="maxPerDayTransport" [ac]="evaluateService.getAcToday()"></evaluate-show>
-    <evaluate-show [title]="'Monat'" [maxValue]="maxPerMonthTransport" [ac]="evaluateService.getAcMonth()"></evaluate-show>
-    <evaluate-show [title]="'Jahr'" [maxValue]="maxPerYearTransport" [ac]="evaluateService.getAcYear()"></evaluate-show>
+    <evaluate-show [title]="'Monat'" [days]="30" [maxValue]="maxPerMonthTransport" [ac]="evaluateService.getAcMonth()"></evaluate-show>
+    <evaluate-show [title]="'Jahr'" [days]="365" [maxValue]="maxPerYearTransport" [ac]="evaluateService.getAcYear()"></evaluate-show>
 </div>

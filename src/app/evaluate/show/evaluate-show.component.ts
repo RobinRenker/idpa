@@ -1,6 +1,8 @@
-import {Component,Input} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {EvaluateService} from "../../providers/evaluate.service";
 import {Activity} from "../../interfaces/activity";
+import {VehicleService} from "../../providers/vehicle.service";
+import {Vehicle} from "../../interfaces/vehicle";
 
 @Component({
     selector: 'evaluate-show',
@@ -13,18 +15,22 @@ export class EvaluateShowComponent {
     @Input() title: string = "";
     @Input() ac: Activity[] = [];
     @Input() maxValue: number = 1;
+    @Input() days: number = 1;
 
-    constructor(public evaluateService: EvaluateService){
+    public summedAc:number = 0;
+    public vehicles: Vehicle[] = [];
+
+    constructor(public evaluateService: EvaluateService, public vehicleService: VehicleService){
 
     }
 
     public getCo2(): number {
-        return this.evaluateService.sumAc(this.ac);
+        this.summedAc = this.evaluateService.sumAc(this.ac);
+        return this.summedAc;
     }
 
     public getPercent(): number {
-        let use = this.evaluateService.sumAc(this.ac);
-        return use / this.maxValue * 100;
+        return this.getCo2() / this.maxValue * 100;
     }
 }
 
