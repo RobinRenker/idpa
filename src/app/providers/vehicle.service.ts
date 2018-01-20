@@ -8,6 +8,7 @@ import DocumentReference = firebase.firestore.DocumentReference;
 import {AngularFirestoreCollection} from "angularfire2/firestore/collection/collection";
 import {AuthService} from "../auth/auth.service";
 import { DocumentChangeAction } from 'angularfire2/firestore/interfaces';
+import { Fuels, Fuel } from "../interfaces/type";
 
 @Injectable()
 export class VehicleService {
@@ -53,7 +54,15 @@ export class VehicleService {
 
     public calcEmission(distance:number, passengers:number, vehicle:Vehicle):number{     //, time?:number, velocity?:number){
         console.log(vehicle);
-        return vehicle.co2perkm * (distance/ 100) / passengers;
+        let fuel:number = 0;
+
+        if(vehicle.fuelType == 0 && vehicle.liter100km != undefined){
+            fuel = distance * (vehicle.liter100km / 100) * Fuels[vehicle.fuelType].prodco2;
+        }
+
+        let co2:number = vehicle.co2perkm * (distance/ 100) + fuel;
+
+        return co2 / passengers;
 
         //distance = Meter
         //velocity = Meter/Sekunde

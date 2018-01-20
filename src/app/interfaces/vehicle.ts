@@ -14,9 +14,12 @@ export class Vehicle{
     public g:number = 9.81;
     public co2perkm:number; //gramm ... Liter * 23
     public liter100km:number; //Liter ... gramm / 23
-    public greyproduction: number = 0; // Herstellungsausstoss
+    public greyprodenergy: number; // in watt
+    public greyprodco2: number; // in gramm
+    public energy100km: number;
+    public lifespan: number; // year
 
-    public engineType:number; //0 = gas : 1 = hybrid : 2 = electric : 3 = probably muscle or magic
+    public fuelType:number; //0 = electric : 1 = fuel : 2 = hybrid
 
     constructor(name:string,type:number){
         this.type = type;

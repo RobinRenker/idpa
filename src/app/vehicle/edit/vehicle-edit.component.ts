@@ -7,7 +7,7 @@ import DocumentReference = firebase.firestore.DocumentReference;
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Types, Type } from "../../interfaces/type";
+import { Types, Type, Fuels, Fuel } from "../../interfaces/type";
 
 @Component({
     selector: 'vehicle-edit',
@@ -21,6 +21,7 @@ export class VehicleEditComponent implements OnInit{
     public vehicleForm: FormGroup;
     public new:boolean = false;
     public types: Type[] = Types;
+    public fuels: Fuel[] = Fuels;
     public id:string = undefined;
 
     constructor(public vehicleService: VehicleService, private route: ActivatedRoute, private router: Router, public fb: FormBuilder){
@@ -39,6 +40,9 @@ export class VehicleEditComponent implements OnInit{
             maxPassengers: [undefined, Validators.required],
             co2perkm: [undefined, Validators.required],
             liter100km: [undefined, Validators.required],
+            fuel: [undefined, Validators.required],
+            energy100km: [undefined, Validators.required],
+            lifespan: [undefined, Validators.required]
         });
     }
 
@@ -50,19 +54,6 @@ export class VehicleEditComponent implements OnInit{
                 vehicle = Types[i].vehicle;
             }
         }
-
-
-        /*this.vehicleForm = this.fb.group({
-            name: [val.name, Validators.required],
-            type: [vehicle.type, Validators.required],
-            weight: [vehicle.weight, Validators.required],
-            roll: [vehicle.roll, Validators.required],
-            cw: [vehicle.cw, Validators.required],
-            a: [vehicle.a, Validators.required],
-            g: [vehicle.g, Validators.required],
-            airdensity: [vehicle.airdensity, Validators.required],
-            maxPassengers: [vehicle.maxPassengers, Validators.required],
-        });*/
 
         vehicle.name = val.name;
         this.vehicleForm.patchValue(vehicle, {emitEvent:false});

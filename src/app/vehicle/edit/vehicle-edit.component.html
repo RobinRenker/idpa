@@ -18,25 +18,40 @@
         <span matSuffix>kg</span>
     </mat-form-field>
 
-    <mat-form-field *ngIf="vehicleForm.value.a != null">
-        <input matInput type="number" placeholder="Frontal Fläche" formControlName="a" requied>
-        <span matSuffix>m²</span>
-    </mat-form-field>
-
     <mat-form-field *ngIf="vehicleForm.value.maxPassengers != null">
         <input matInput type="number" placeholder="Maximale Passagiere" formControlName="maxPassengers" requied>
         <span matSuffix>Pers.</span>
     </mat-form-field>
 
-    <mat-form-field *ngIf="vehicleForm.value.co2perkm != null">
-        <input matInput type="number" placeholder="CO2 Ausstoss pro 100km" formControlName="co2perkm" requied>
-        <span matSuffix>Gramm</span>
+    <mat-form-field *ngIf="vehicleForm.value.lifespan != null">
+        <input matInput type="number" placeholder="Lebenserwartung" formControlName="lifespan" requied>
+        <span matSuffix>Years</span>
     </mat-form-field>
 
-    <mat-form-field *ngIf="vehicleForm.value.liter100km != null">
-        <input matInput type="number" placeholder="Liter pro 100km" formControlName="liter100km" requied>
-        <span matSuffix>Liter</span>
+    <mat-form-field>
+        <mat-select type="number" placeholder="Fuel" formControlName="fuel" required>
+            <mat-option *ngFor="let fuel of fuels" [value]="fuel.id">
+                {{ fuel.text }}
+            </mat-option>
+        </mat-select>
     </mat-form-field>
+
+    <mat-form-field *ngIf="vehicleForm.value.energy100km != null && vehicleForm.value.fuel == 0">
+        <input matInput type="number" placeholder="Energie Verbrauch pro 100km" formControlName="energy100km" requied>
+        <span matSuffix>Watth</span>
+    </mat-form-field>
+
+    <div *ngIf="vehicleForm.value.fuel == 1 || vehicleForm.value.fuel == 2">
+        <mat-form-field *ngIf="vehicleForm.value.co2perkm != null">
+            <input matInput type="number" placeholder="CO2 Ausstoss pro 100km" formControlName="co2perkm" requied>
+            <span matSuffix>Gramm</span>
+        </mat-form-field>
+
+        <mat-form-field *ngIf="vehicleForm.value.liter100km != null">
+            <input matInput type="number" placeholder="Liter pro 100km" formControlName="liter100km" requied>
+            <span matSuffix>Liter</span>
+        </mat-form-field>
+    </div>
 
     <mat-accordion *ngIf="vehicleForm.value.type != null">
         <mat-expansion-panel>
@@ -46,6 +61,11 @@
                     Type your name and age
                 </mat-panel-description>-->
             </mat-expansion-panel-header>
+
+            <mat-form-field *ngIf="vehicleForm.value.a != null">
+                <input matInput type="number" placeholder="Frontal Fläche" formControlName="a" requied>
+                <span matSuffix>m²</span>
+            </mat-form-field>
 
             <mat-form-field *ngIf="vehicleForm.value.cw != null">
                 <input matInput type="number" placeholder="Aerodynamik" formControlName="cw" requied>
