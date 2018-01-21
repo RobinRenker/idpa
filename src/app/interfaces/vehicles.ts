@@ -12,6 +12,7 @@ export class Car extends Vehicle{
         this.co2perkm = 100;
         this.liter100km = 5;
         this.greyprodenergy = 22000000;
+        this.greyprodco2 = 12000000;
         this.energy100km = 22000;
         this.lifespan = 10;
     }
@@ -28,9 +29,10 @@ export class Bike extends Vehicle {
         this.fuelType = 0;
         this.co2perkm = 0;//?
         this.liter100km = 3.5;
-        this.greyprodenergy = 0;
         this.energy100km = 0;
         this.lifespan = 10;
+        this.greyprodenergy = 0;
+        this.greyprodco2 = 0;
     }
 }
 
@@ -46,6 +48,7 @@ export class Bus extends Vehicle {
         this.co2perkm = 0;//?
         this.liter100km = 0;//?
         this.greyprodenergy = 0;
+        this.greyprodco2 = 0;
         this.energy100km = 0;
         this.lifespan = 10;
     }
@@ -60,6 +63,7 @@ export class Bicycle extends Vehicle {
         this.maxPassengers = 1; //?
         this.weight = 20;
         this.greyprodenergy = 0;
+        this.greyprodco2 = 0;
         this.lifespan = 10;
     }
 }

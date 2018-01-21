@@ -42,7 +42,9 @@ export class VehicleEditComponent implements OnInit{
             liter100km: [undefined, Validators.required],
             fuel: [undefined, Validators.required],
             energy100km: [undefined, Validators.required],
-            lifespan: [undefined, Validators.required]
+            lifespan: [undefined, Validators.required],
+            greyprodco2: [undefined, Validators.required],
+            greyprodenergy: [undefined, Validators.required]
         });
     }
 
@@ -79,6 +81,7 @@ export class VehicleEditComponent implements OnInit{
                 });
             });
         } else {
+            v.id = this.id;
             this.vehicleService.update(this.id,v);
         }
     }
@@ -97,6 +100,7 @@ export class VehicleEditComponent implements OnInit{
                 this.vehicle = this.vehicleService.getVehicle(params.id);
                 this.vehicle.subscribe((value) => {
                     this.vehicleForm.patchValue(value, {emitEvent: false});
+                    this.saveVehicle();
                 });
             }
         });

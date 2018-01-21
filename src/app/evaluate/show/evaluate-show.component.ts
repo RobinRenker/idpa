@@ -25,13 +25,14 @@ export class EvaluateShowComponent {
     }
 
     public getCo2(): number {
-        this.summedAc = this.evaluateService.sumAc(this.ac);
+        this.summedAc = this.evaluateService.sumAc(this.ac) + this.evaluateService.sumProd(this.ac)*this.days;
         return this.summedAc;
     }
 
     public getPercent(): number {
         return this.getCo2() / this.maxValue * 100;
     }
+
 }
 
 

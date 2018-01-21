@@ -18,7 +18,7 @@ export class EvaluateService {
     public activityCollection: AngularFirestoreCollection<Activity>;
     public today: Date = new Date();
 
-    constructor(public auth: AuthService, public db: AngularFirestore, public vehileService: VehicleService) {
+    constructor(public auth: AuthService, public db: AngularFirestore, public vehicleService: VehicleService) {
 
         //just get them all
         this.auth.user.subscribe((user) => {
@@ -42,6 +42,41 @@ export class EvaluateService {
             }
         }
         return acs;
+    }
+
+    public sumProd(acs:Activity[]):number{
+        let ret:number = 0;
+        let vs: Vehicle[] = [];
+        for(let a = 0; a< acs.length; a++){
+
+            let found:boolean = true;
+
+            //vehicles already in vs
+            for(let f = 0; f < vs.length; f ++){
+                if(vs[f].id == acs[a].vehicle){
+                    found = false;
+                    break;
+                }
+            }
+
+            //vehicles not yet found (true)
+            if(found){
+                for(let v = 0; v < this.vehicleService.all.length; v++){
+                    if(acs[a].vehicle == this.vehicleService.all[v].id){
+                        vs.push(this.vehicleService.all[v]);
+                        break;
+                    }
+                }
+            }
+        }
+        console.log(vs);
+        for(let v = 0; v < vs.length; v++){
+            if(vs[v].greyprodco2 > 0 && vs[v].lifespan > 0){
+                ret = ret + vs[v].greyprodco2 / (vs[v].lifespan * 365);
+            }
+        }
+
+        return ret;
     }
 
     public sumAc(acs:Activity[]): number {

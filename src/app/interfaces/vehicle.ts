@@ -1,5 +1,5 @@
 export class Vehicle{
-
+    public id: string;
     public name: string;
     public weight:number = null;
     public emissions: number = null;

@@ -53,6 +53,16 @@
         </mat-form-field>
     </div>
 
+    <mat-form-field *ngIf="vehicleForm.value.greyprodco2 != null">
+        <input matInput type="number" placeholder="Herstellungsausstoss" formControlName="greyprodco2" requied>
+        <span matSuffix>g</span>
+    </mat-form-field>
+
+    <mat-form-field *ngIf="vehicleForm.value.greyprodenergy != null">
+        <input matInput type="number" placeholder="Herstellungsenergie" formControlName="greyprodenergy" requied>
+        <span matSuffix>watt</span>
+    </mat-form-field>
+
     <mat-accordion *ngIf="vehicleForm.value.type != null">
         <mat-expansion-panel>
             <mat-expansion-panel-header>

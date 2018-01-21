@@ -13,6 +13,11 @@ import { Fuels, Fuel } from "../interfaces/type";
 @Injectable()
 export class VehicleService {
 
+    public all: Vehicle[] = [];
+
+    public pVehicles: Vehicle[] = [];
+    public mVehicles: Vehicle[] = [];
+
     public publicVehicles: Observable<DocumentChangeAction[]>;
     public myVehicles: Observable<DocumentChangeAction[]>;
     private publicVehicleCollection: AngularFirestoreCollection<Vehicle>;
@@ -25,6 +30,16 @@ export class VehicleService {
             this.myVehicleCollection = db.collection<Vehicle>('vehicles', ref => ref.where("author","==",user.uid));
             this.publicVehicles = this.publicVehicleCollection.snapshotChanges();
             this.myVehicles = this.myVehicleCollection.snapshotChanges();
+
+            this.publicVehicleCollection.valueChanges().subscribe((val) => {
+                this.pVehicles = val;
+                this.all = this.pVehicles.concat(this.mVehicles);
+            });
+
+            this.myVehicleCollection.valueChanges().subscribe((val) => {
+                this.mVehicles = val;
+                this.all = this.mVehicles.concat(this.pVehicles);
+            });
         });
     }
 
