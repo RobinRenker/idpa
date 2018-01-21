@@ -316,6 +316,8 @@ module.exports = function (env) {
        */
 
 
+
+      /*
         new OfflinePlugin({
             cacheMaps: [
                 {
@@ -324,9 +326,10 @@ module.exports = function (env) {
                     },
                     requestTypes: ['navigate']
                 }
-            ],
-            excludes: ['**/.*', '**/*.map', '**/*.gz','**/__/**']
-        })
+            ],*/
+            //excludes: ['**/.*', '**/*.map', '**/*.gz',"**/__/**"]
+        //})
+
 
     ],
 
