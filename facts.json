@@ -1,0 +1,14 @@
+{
+  "facts":[
+    {"title":"Herstellung eines Autos.","text":"Um einen VW Golf herzustellen werden etwa 22'000'000Wh benötigt. Dies entspricht etwa der Energie von 2 Tonnen Erdöl.","src":"https://de.wikipedia.org/wiki/Graue_Energie","type":1},
+    {"title":"Warmer Motor.","text":"Ein kalter Motor stösst rund 10% mehr CO2 aus als ein warmer Motor. Für kurze Fahrten sollte man also auf das Auto verzichten.","src":"https://naturwissenschaften.ch/topics/climate/energy/transportation","type":1},
+    {"title":"","text":"","src":"","type":1},
+    {"title":"","text":"","src":"","type":1}
+  ],
+  "tipps":[
+    {"title":"Warmer Motor.","text":"Da ein kalter Motor mehr CO2 ausstösst, lohnt sich das Auto nicht für kurze Strecken.","src":"https://naturwissenschaften.ch/topics/climate/energy/transportation","type":0},
+    {"title":"Rote Ampel.","text":"Es lohnt sich den Motor auszuschalten wenn die Wartezeit mehr als 30 Sekunden dauert.","src":"https://www.abendblatt.de/ratgeber/article107774017/An-der-roten-Ampel-Motor-abschalten-und-Sprit-sparen.html","type":0},
+    {"title":"","text":"","src":"","type":0},
+    {"title":"","text":"","src":"","type":0}
+  ]
+}
