@@ -116,9 +116,7 @@ export class ActivityEditComponent implements OnInit {
 
             });
         }
-        return new Promise(resolve => {
-            return 0;
-        });
+
 
     }
 
